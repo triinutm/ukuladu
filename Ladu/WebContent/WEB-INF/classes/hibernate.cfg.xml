@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+  <property name="hibernate.connection.password">UQW2013</property>
+  <property name="hibernate.connection.url">jdbc:oracle:thin:@imbi.ld.ttu.ee:1521:orcl</property>
+  <property name="hibernate.connection.username">TUD104435</property>
+  <property name="hibernate.default_schema">TUD104435</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <mapping resource="hibernate/Item.hbm.xml"/>
+  <mapping resource="hibernate/CustomerPriceList.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

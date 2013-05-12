@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-name="CUSTOMER_PRICE_LIST"/>
+  <table-filter match-name="ITEM"/>
+  <table-filter match-name="ITEM_ACTION"/>
+  <table-filter match-name="ITEM_ACTION_TYPE"/>
+  <table-filter match-name="ITEM_ATTRIBUTE"/>
+  <table-filter match-name="ITEM_ATTRIBUTE_TYPE"/>
+  <table-filter match-name="ITEM_PRICE_LIST"/>
+  <table-filter match-name="ITEM_STORE"/>
+  <table-filter match-name="ITEM_TYPE"/>
+  <table-filter match-name="PRICE_LIST"/>
+  <table-filter match-name="PRICE_LIST_STATUS_TYPE"/>
+  <table-filter match-name="STORE"/>
+  <table-filter match-name="TYPE_ATTRIBUTE"/>
+  <table-filter match-name="UNIT_TYPE"/>
+</hibernate-reverse-engineering>

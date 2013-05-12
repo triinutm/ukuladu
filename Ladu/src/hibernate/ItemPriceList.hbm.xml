@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ItemPriceList" table="ITEM_PRICE_LIST">
+        <id name="itemPriceList" type="long">
+            <column name="ITEM_PRICE_LIST" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="priceListFk" type="java.lang.Long">
+            <column name="PRICE_LIST_FK" precision="10" scale="0" />
+        </property>
+        <property name="itemFk" type="java.lang.Long">
+            <column name="ITEM_FK" precision="10" scale="0" />
+        </property>
+        <property name="discountXtra" type="java.lang.Long">
+            <column name="DISCOUNT_XTRA" precision="10" scale="0" />
+        </property>
+        <property name="salePrice" type="big_decimal">
+            <column name="SALE_PRICE" precision="10" />
+        </property>
+        <property name="created" type="date">
+            <column name="CREATED" length="7" />
+        </property>
+    </class>
+</hibernate-mapping>
