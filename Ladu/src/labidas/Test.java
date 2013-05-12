@@ -5,6 +5,7 @@ import java.util.List;
 
 import hibernate.*;
 
+import model.database.LaduDAO;
 import model.item.dao.HibernateUtil;
 
 import org.hibernate.Session;
@@ -28,6 +29,13 @@ public class Test {
 		}
 		for (Item item : itemList) {
 			System.out.println(item.getName());
+		}
+		
+		LaduDAO ladu = new LaduDAO();
+		List<Item> list = ladu.getAllItems();
+		
+		for (Item item : list) {
+			System.out.println("Teine ring: " + item.getName());
 		}
 	}
 
