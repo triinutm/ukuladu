@@ -1,5 +1,7 @@
 package controller;
 
+import hibernate.UserAccount;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -7,6 +9,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.PWDecoder;
+import model.database.LaduDAO;
 
 public class LoginController extends BaseController {
 
@@ -22,14 +27,14 @@ public class LoginController extends BaseController {
 		RequestDispatcher view = request.getRequestDispatcher("/login.jsp");
 		request.setCharacterEncoding("UTF-8");
 		UserAccount userAccount = new UserAccount();
-		LoginService loginService = new LoginService();
-		DBUtil dbUtil= new DBUtil();
+		PWDecoder PWDecoder = new PWDecoder();
+		LaduDAO ladu= new LaduDAO();
 		String userName=request.getParameter("userName");
 		String password=request.getParameter("password");
-		userAccount=dbUtil.getUserByUsername(userName);
+		userAccount=ladu.getUserByUsername(userName);
 
 		if(userAccount!=null){
-			String hashedPassword=loginService.hashPassword(password);
+			String hashedPassword=PWDecoder.hashPassword(password);
 			if(userAccount.getPassw().equals(hashedPassword)){
 				request.getSession().setAttribute("user", userAccount);
 				response.sendRedirect("/R11_ladu/");

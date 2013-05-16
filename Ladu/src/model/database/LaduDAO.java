@@ -1,6 +1,7 @@
 package model.database;
 
 import hibernate.Item;
+import hibernate.UserAccount;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -62,6 +63,11 @@ public class LaduDAO {
 		}
 
 		return itemList ;
+	}
+
+	public UserAccount getUserByUsername(String userName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
