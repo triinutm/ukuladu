@@ -1,6 +1,6 @@
 package hibernate;
 
-// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:51:38 PM by Hibernate Tools 3.4.0.CR1
 
 import java.sql.Clob;
 import java.util.Date;
@@ -20,6 +20,7 @@ public class Enterprise implements java.io.Serializable {
 	private Date created;
 	private Date updated;
 	private Set employees = new HashSet(0);
+	private Set items = new HashSet(0);
 
 	public Enterprise() {
 	}
@@ -30,7 +31,7 @@ public class Enterprise implements java.io.Serializable {
 
 	public Enterprise(long enterprise, Clob name, Clob fullName,
 			Long createdBy, Long updatedBy, Date created, Date updated,
-			Set employees) {
+			Set employees, Set items) {
 		this.enterprise = enterprise;
 		this.name = name;
 		this.fullName = fullName;
@@ -39,6 +40,7 @@ public class Enterprise implements java.io.Serializable {
 		this.created = created;
 		this.updated = updated;
 		this.employees = employees;
+		this.items = items;
 	}
 
 	public long getEnterprise() {
@@ -103,6 +105,14 @@ public class Enterprise implements java.io.Serializable {
 
 	public void setEmployees(Set employees) {
 		this.employees = employees;
+	}
+
+	public Set getItems() {
+		return this.items;
+	}
+
+	public void setItems(Set items) {
+		this.items = items;
 	}
 
 }

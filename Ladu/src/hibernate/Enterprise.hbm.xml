@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:51:38 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="hibernate.Enterprise" table="ENTERPRISE">
         <id name="enterprise" type="long">
@@ -31,6 +31,12 @@
                 <column name="ENTERPRISE_FK" precision="10" scale="0" />
             </key>
             <one-to-many class="hibernate.Employee" />
+        </set>
+        <set name="items" table="ITEM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SUPPLIER_ENTERPRISE_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.Item" />
         </set>
     </class>
 </hibernate-mapping>
