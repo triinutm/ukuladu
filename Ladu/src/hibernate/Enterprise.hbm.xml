@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="hibernate.Enterprise" table="ENTERPRISE">
+        <id name="enterprise" type="long">
+            <column name="ENTERPRISE" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="clob">
+            <column name="NAME" />
+        </property>
+        <property name="fullName" type="clob">
+            <column name="FULL_NAME" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="updatedBy" type="java.lang.Long">
+            <column name="UPDATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="created" type="date">
+            <column name="CREATED" length="7" />
+        </property>
+        <property name="updated" type="date">
+            <column name="UPDATED" length="7" />
+        </property>
+        <set name="employees" table="EMPLOYEE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ENTERPRISE_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.Employee" />
+        </set>
+    </class>
+</hibernate-mapping>

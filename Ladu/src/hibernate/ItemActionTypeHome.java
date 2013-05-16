@@ -1,23 +1,23 @@
 package hibernate;
 
-// default package
-// Generated May 12, 2013 3:56:00 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.List;
 import javax.naming.InitialContext;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
  * Home object for domain model class ItemActionType.
- * @see .ItemActionType
+ * @see hibernate.ItemActionType
  * @author Hibernate Tools
  */
 public class ItemActionTypeHome {
 
-	private static final Logger log = Logger.getLogger(ItemActionTypeHome.class);
+	private static final Log log = LogFactory.getLog(ItemActionTypeHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -93,7 +93,7 @@ public class ItemActionTypeHome {
 		log.debug("getting ItemActionType instance with id: " + id);
 		try {
 			ItemActionType instance = (ItemActionType) sessionFactory
-					.getCurrentSession().get("ItemActionType", id);
+					.getCurrentSession().get("hibernate.ItemActionType", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -110,7 +110,7 @@ public class ItemActionTypeHome {
 		log.debug("finding ItemActionType instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("ItemActionType")
+					.createCriteria("hibernate.ItemActionType")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

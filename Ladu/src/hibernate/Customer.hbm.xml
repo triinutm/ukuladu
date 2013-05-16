@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="hibernate.Customer" table="CUSTOMER">
+        <id name="customer" type="long">
+            <column name="CUSTOMER" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="subjectFk" type="java.lang.Long">
+            <column name="SUBJECT_FK" precision="10" scale="0" />
+        </property>
+        <property name="subjectTypeFk" type="java.lang.Long">
+            <column name="SUBJECT_TYPE_FK" precision="10" scale="0" />
+        </property>
+        <set name="customerPriceLists" table="CUSTOMER_PRICE_LIST" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CUSTOMER_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.CustomerPriceList" />
+        </set>
+    </class>
+</hibernate-mapping>

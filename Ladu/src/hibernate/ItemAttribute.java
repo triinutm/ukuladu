@@ -1,7 +1,6 @@
 package hibernate;
 
-// default package
-// Generated May 12, 2013 3:55:58 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -11,8 +10,8 @@ import java.util.Date;
 public class ItemAttribute implements java.io.Serializable {
 
 	private long itemAttribute;
-	private Long itemAttributeTypeFk;
-	private Long itemFk;
+	private ItemAttributeType itemAttributeType;
+	private Item item;
 	private String typeName;
 	private String valueText;
 	private Long valueNumber;
@@ -27,12 +26,13 @@ public class ItemAttribute implements java.io.Serializable {
 		this.itemAttribute = itemAttribute;
 	}
 
-	public ItemAttribute(long itemAttribute, Long itemAttributeTypeFk,
-			Long itemFk, String typeName, String valueText, Long valueNumber,
-			Date valueDate, Long dataType, Long orderby) {
+	public ItemAttribute(long itemAttribute,
+			ItemAttributeType itemAttributeType, Item item, String typeName,
+			String valueText, Long valueNumber, Date valueDate, Long dataType,
+			Long orderby) {
 		this.itemAttribute = itemAttribute;
-		this.itemAttributeTypeFk = itemAttributeTypeFk;
-		this.itemFk = itemFk;
+		this.itemAttributeType = itemAttributeType;
+		this.item = item;
 		this.typeName = typeName;
 		this.valueText = valueText;
 		this.valueNumber = valueNumber;
@@ -49,20 +49,20 @@ public class ItemAttribute implements java.io.Serializable {
 		this.itemAttribute = itemAttribute;
 	}
 
-	public Long getItemAttributeTypeFk() {
-		return this.itemAttributeTypeFk;
+	public ItemAttributeType getItemAttributeType() {
+		return this.itemAttributeType;
 	}
 
-	public void setItemAttributeTypeFk(Long itemAttributeTypeFk) {
-		this.itemAttributeTypeFk = itemAttributeTypeFk;
+	public void setItemAttributeType(ItemAttributeType itemAttributeType) {
+		this.itemAttributeType = itemAttributeType;
 	}
 
-	public Long getItemFk() {
-		return this.itemFk;
+	public Item getItem() {
+		return this.item;
 	}
 
-	public void setItemFk(Long itemFk) {
-		this.itemFk = itemFk;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public String getTypeName() {

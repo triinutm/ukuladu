@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="ItemActionType" table="ITEM_ACTION_TYPE">
+    <class name="hibernate.ItemActionType" table="ITEM_ACTION_TYPE">
         <id name="itemActionType" type="long">
             <column name="ITEM_ACTION_TYPE" precision="10" scale="0" />
             <generator class="assigned" />
@@ -11,5 +11,11 @@
         <property name="typeName" type="string">
             <column name="TYPE_NAME" length="200" />
         </property>
+        <set name="itemActions" table="ITEM_ACTION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITEM_ACTION_TYPE_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemAction" />
+        </set>
     </class>
 </hibernate-mapping>

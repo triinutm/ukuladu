@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="PriceList" table="PRICE_LIST">
+    <class name="hibernate.PriceList" table="PRICE_LIST">
         <id name="priceList" type="long">
             <column name="PRICE_LIST" precision="10" scale="0" />
             <generator class="assigned" />
         </id>
-        <property name="priceListStatusTypeFk" type="java.lang.Long">
+        <many-to-one name="priceListStatusType" class="hibernate.PriceListStatusType" fetch="select">
             <column name="PRICE_LIST_STATUS_TYPE_FK" precision="10" scale="0" />
-        </property>
+        </many-to-one>
         <property name="defaultDiscountXtra" type="java.lang.Long">
             <column name="DEFAULT_DISCOUNT_XTRA" precision="10" scale="0" />
         </property>
@@ -35,5 +35,17 @@
         <property name="updated" type="date">
             <column name="UPDATED" length="7" />
         </property>
+        <set name="itemPriceLists" table="ITEM_PRICE_LIST" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRICE_LIST_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemPriceList" />
+        </set>
+        <set name="customerPriceLists" table="CUSTOMER_PRICE_LIST" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRICE_LIST_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.CustomerPriceList" />
+        </set>
     </class>
 </hibernate-mapping>

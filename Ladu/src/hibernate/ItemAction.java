@@ -1,7 +1,6 @@
 package hibernate;
 
-// default package
-// Generated May 12, 2013 3:55:58 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,10 +11,10 @@ import java.util.Date;
 public class ItemAction implements java.io.Serializable {
 
 	private long itemAction;
-	private Long itemActionTypeFk;
+	private Store storeByStoreFromFk;
+	private ItemActionType itemActionType;
+	private Store storeByStoreToFk;
 	private Long itemFk;
-	private Long storeFromFk;
-	private Long storeToFk;
 	private Date actionDate;
 	private Long createdBy;
 	private Long itemCount;
@@ -30,15 +29,15 @@ public class ItemAction implements java.io.Serializable {
 		this.itemAction = itemAction;
 	}
 
-	public ItemAction(long itemAction, Long itemActionTypeFk, Long itemFk,
-			Long storeFromFk, Long storeToFk, Date actionDate, Long createdBy,
-			Long itemCount, BigDecimal actionPrice, String actionNote,
-			Date created) {
+	public ItemAction(long itemAction, Store storeByStoreFromFk,
+			ItemActionType itemActionType, Store storeByStoreToFk, Long itemFk,
+			Date actionDate, Long createdBy, Long itemCount,
+			BigDecimal actionPrice, String actionNote, Date created) {
 		this.itemAction = itemAction;
-		this.itemActionTypeFk = itemActionTypeFk;
+		this.storeByStoreFromFk = storeByStoreFromFk;
+		this.itemActionType = itemActionType;
+		this.storeByStoreToFk = storeByStoreToFk;
 		this.itemFk = itemFk;
-		this.storeFromFk = storeFromFk;
-		this.storeToFk = storeToFk;
 		this.actionDate = actionDate;
 		this.createdBy = createdBy;
 		this.itemCount = itemCount;
@@ -55,12 +54,28 @@ public class ItemAction implements java.io.Serializable {
 		this.itemAction = itemAction;
 	}
 
-	public Long getItemActionTypeFk() {
-		return this.itemActionTypeFk;
+	public Store getStoreByStoreFromFk() {
+		return this.storeByStoreFromFk;
 	}
 
-	public void setItemActionTypeFk(Long itemActionTypeFk) {
-		this.itemActionTypeFk = itemActionTypeFk;
+	public void setStoreByStoreFromFk(Store storeByStoreFromFk) {
+		this.storeByStoreFromFk = storeByStoreFromFk;
+	}
+
+	public ItemActionType getItemActionType() {
+		return this.itemActionType;
+	}
+
+	public void setItemActionType(ItemActionType itemActionType) {
+		this.itemActionType = itemActionType;
+	}
+
+	public Store getStoreByStoreToFk() {
+		return this.storeByStoreToFk;
+	}
+
+	public void setStoreByStoreToFk(Store storeByStoreToFk) {
+		this.storeByStoreToFk = storeByStoreToFk;
 	}
 
 	public Long getItemFk() {
@@ -69,22 +84,6 @@ public class ItemAction implements java.io.Serializable {
 
 	public void setItemFk(Long itemFk) {
 		this.itemFk = itemFk;
-	}
-
-	public Long getStoreFromFk() {
-		return this.storeFromFk;
-	}
-
-	public void setStoreFromFk(Long storeFromFk) {
-		this.storeFromFk = storeFromFk;
-	}
-
-	public Long getStoreToFk() {
-		return this.storeToFk;
-	}
-
-	public void setStoreToFk(Long storeToFk) {
-		this.storeToFk = storeToFk;
 	}
 
 	public Date getActionDate() {

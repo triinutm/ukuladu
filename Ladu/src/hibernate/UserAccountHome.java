@@ -11,14 +11,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class CustomerPriceList.
- * @see hibernate.CustomerPriceList
+ * Home object for domain model class UserAccount.
+ * @see hibernate.UserAccount
  * @author Hibernate Tools
  */
-public class CustomerPriceListHome {
+public class UserAccountHome {
 
-	private static final Log log = LogFactory
-			.getLog(CustomerPriceListHome.class);
+	private static final Log log = LogFactory.getLog(UserAccountHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -33,8 +32,8 @@ public class CustomerPriceListHome {
 		}
 	}
 
-	public void persist(CustomerPriceList transientInstance) {
-		log.debug("persisting CustomerPriceList instance");
+	public void persist(UserAccount transientInstance) {
+		log.debug("persisting UserAccount instance");
 		try {
 			sessionFactory.getCurrentSession().persist(transientInstance);
 			log.debug("persist successful");
@@ -44,8 +43,8 @@ public class CustomerPriceListHome {
 		}
 	}
 
-	public void attachDirty(CustomerPriceList instance) {
-		log.debug("attaching dirty CustomerPriceList instance");
+	public void attachDirty(UserAccount instance) {
+		log.debug("attaching dirty UserAccount instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -55,8 +54,8 @@ public class CustomerPriceListHome {
 		}
 	}
 
-	public void attachClean(CustomerPriceList instance) {
-		log.debug("attaching clean CustomerPriceList instance");
+	public void attachClean(UserAccount instance) {
+		log.debug("attaching clean UserAccount instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -66,8 +65,8 @@ public class CustomerPriceListHome {
 		}
 	}
 
-	public void delete(CustomerPriceList persistentInstance) {
-		log.debug("deleting CustomerPriceList instance");
+	public void delete(UserAccount persistentInstance) {
+		log.debug("deleting UserAccount instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -77,10 +76,10 @@ public class CustomerPriceListHome {
 		}
 	}
 
-	public CustomerPriceList merge(CustomerPriceList detachedInstance) {
-		log.debug("merging CustomerPriceList instance");
+	public UserAccount merge(UserAccount detachedInstance) {
+		log.debug("merging UserAccount instance");
 		try {
-			CustomerPriceList result = (CustomerPriceList) sessionFactory
+			UserAccount result = (UserAccount) sessionFactory
 					.getCurrentSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -90,11 +89,11 @@ public class CustomerPriceListHome {
 		}
 	}
 
-	public CustomerPriceList findById(long id) {
-		log.debug("getting CustomerPriceList instance with id: " + id);
+	public UserAccount findById(long id) {
+		log.debug("getting UserAccount instance with id: " + id);
 		try {
-			CustomerPriceList instance = (CustomerPriceList) sessionFactory
-					.getCurrentSession().get("hibernate.CustomerPriceList", id);
+			UserAccount instance = (UserAccount) sessionFactory
+					.getCurrentSession().get("hibernate.UserAccount", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -107,11 +106,11 @@ public class CustomerPriceListHome {
 		}
 	}
 
-	public List findByExample(CustomerPriceList instance) {
-		log.debug("finding CustomerPriceList instance by example");
+	public List findByExample(UserAccount instance) {
+		log.debug("finding UserAccount instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("hibernate.CustomerPriceList")
+					.createCriteria("hibernate.UserAccount")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

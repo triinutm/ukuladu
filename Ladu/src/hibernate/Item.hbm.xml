@@ -1,21 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="hibernate.Item" table="ITEM">
         <id name="item" type="long">
             <column name="ITEM" precision="10" scale="0" />
             <generator class="assigned" />
         </id>
-        <property name="unitTypeFk" type="java.lang.Long">
+        <many-to-one name="item_1" class="hibernate.Item" fetch="select">
+            <column name="UPPER_ITEM_FK" precision="10" scale="0" />
+        </many-to-one>
+        <many-to-one name="itemType" class="hibernate.ItemType" fetch="select">
+            <column name="ITEM_TYPE_FK" precision="10" scale="0" />
+        </many-to-one>
+        <many-to-one name="unitType" class="hibernate.UnitType" fetch="select">
             <column name="UNIT_TYPE_FK" precision="10" scale="0" />
-        </property>
+        </many-to-one>
         <property name="supplierEnterpriseFk" type="java.lang.Long">
             <column name="SUPPLIER_ENTERPRISE_FK" precision="10" scale="0" />
-        </property>
-        <property name="itemTypeFk" type="java.lang.Long">
-            <column name="ITEM_TYPE_FK" precision="10" scale="0" />
         </property>
         <property name="name" type="string">
             <column name="NAME" length="1000" />
@@ -38,14 +41,35 @@
         <property name="singleItem" type="string">
             <column name="SINGLE_ITEM" length="1" />
         </property>
-        <property name="upperItemFk" type="java.lang.Long">
-            <column name="UPPER_ITEM_FK" precision="10" scale="0" />
-        </property>
         <property name="serialNo" type="string">
             <column name="SERIAL_NO" length="100" />
         </property>
         <property name="created" type="date">
             <column name="CREATED" length="7" />
         </property>
+        <set name="itemPriceLists" table="ITEM_PRICE_LIST" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITEM_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemPriceList" />
+        </set>
+        <set name="itemAttributes" table="ITEM_ATTRIBUTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITEM_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemAttribute" />
+        </set>
+        <set name="items" table="ITEM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UPPER_ITEM_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.Item" />
+        </set>
+        <set name="itemStores" table="ITEM_STORE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITEM_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemStore" />
+        </set>
     </class>
 </hibernate-mapping>

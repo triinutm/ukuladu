@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="UnitType" table="UNIT_TYPE">
+    <class name="hibernate.UnitType" table="UNIT_TYPE">
         <id name="unitType" type="long">
             <column name="UNIT_TYPE" precision="10" scale="0" />
             <generator class="assigned" />
@@ -14,5 +14,11 @@
         <property name="longName" type="string">
             <column name="LONG_NAME" length="200" />
         </property>
+        <set name="items" table="ITEM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UNIT_TYPE_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.Item" />
+        </set>
     </class>
 </hibernate-mapping>
