@@ -1,24 +1,24 @@
 package hibernate;
 
-// default package
-// Generated May 12, 2013 3:56:00 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.List;
 import javax.naming.InitialContext;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
  * Home object for domain model class PriceListStatusType.
- * @see .PriceListStatusType
+ * @see hibernate.PriceListStatusType
  * @author Hibernate Tools
  */
 public class PriceListStatusTypeHome {
 
-	private static final Logger log = Logger
-			.getLogger(PriceListStatusTypeHome.class);
+	private static final Log log = LogFactory
+			.getLog(PriceListStatusTypeHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -94,7 +94,8 @@ public class PriceListStatusTypeHome {
 		log.debug("getting PriceListStatusType instance with id: " + id);
 		try {
 			PriceListStatusType instance = (PriceListStatusType) sessionFactory
-					.getCurrentSession().get("PriceListStatusType", id);
+					.getCurrentSession().get("hibernate.PriceListStatusType",
+							id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -111,7 +112,7 @@ public class PriceListStatusTypeHome {
 		log.debug("finding PriceListStatusType instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("PriceListStatusType")
+					.createCriteria("hibernate.PriceListStatusType")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

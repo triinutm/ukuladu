@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="ItemAttributeType" table="ITEM_ATTRIBUTE_TYPE">
+    <class name="hibernate.ItemAttributeType" table="ITEM_ATTRIBUTE_TYPE">
         <id name="itemAttributeType" type="long">
             <column name="ITEM_ATTRIBUTE_TYPE" precision="10" scale="0" />
             <generator class="assigned" />
@@ -17,5 +17,17 @@
         <property name="dataType" type="java.lang.Long">
             <column name="DATA_TYPE" precision="10" scale="0" />
         </property>
+        <set name="typeAttributes" table="TYPE_ATTRIBUTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITEM_ATTRIBUTE_TYPE_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.TypeAttribute" />
+        </set>
+        <set name="itemAttributes" table="ITEM_ATTRIBUTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITEM_ATTRIBUTE_TYPE_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemAttribute" />
+        </set>
     </class>
 </hibernate-mapping>

@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="ItemAction" table="ITEM_ACTION">
+    <class name="hibernate.ItemAction" table="ITEM_ACTION">
         <id name="itemAction" type="long">
             <column name="ITEM_ACTION" precision="10" scale="0" />
             <generator class="assigned" />
         </id>
-        <property name="itemActionTypeFk" type="java.lang.Long">
+        <many-to-one name="storeByStoreFromFk" class="hibernate.Store" fetch="select">
+            <column name="STORE_FROM_FK" precision="10" scale="0" />
+        </many-to-one>
+        <many-to-one name="itemActionType" class="hibernate.ItemActionType" fetch="select">
             <column name="ITEM_ACTION_TYPE_FK" precision="10" scale="0" />
-        </property>
+        </many-to-one>
+        <many-to-one name="storeByStoreToFk" class="hibernate.Store" fetch="select">
+            <column name="STORE_TO_FK" precision="10" scale="0" />
+        </many-to-one>
         <property name="itemFk" type="java.lang.Long">
             <column name="ITEM_FK" precision="10" scale="0" />
-        </property>
-        <property name="storeFromFk" type="java.lang.Long">
-            <column name="STORE_FROM_FK" precision="10" scale="0" />
-        </property>
-        <property name="storeToFk" type="java.lang.Long">
-            <column name="STORE_TO_FK" precision="10" scale="0" />
         </property>
         <property name="actionDate" type="date">
             <column name="ACTION_DATE" length="7" />

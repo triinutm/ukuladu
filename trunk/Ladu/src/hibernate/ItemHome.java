@@ -1,23 +1,23 @@
 package hibernate;
 
-// default package
-// Generated May 12, 2013 3:56:00 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.List;
 import javax.naming.InitialContext;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
  * Home object for domain model class Item.
- * @see .Item
+ * @see hibernate.Item
  * @author Hibernate Tools
  */
 public class ItemHome {
 
-	private static final Logger log = Logger.getLogger(ItemHome.class);
+	private static final Log log = LogFactory.getLog(ItemHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -93,7 +93,7 @@ public class ItemHome {
 		log.debug("getting Item instance with id: " + id);
 		try {
 			Item instance = (Item) sessionFactory.getCurrentSession().get(
-					"Item", id);
+					"hibernate.Item", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -110,8 +110,8 @@ public class ItemHome {
 		log.debug("finding Item instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("Item").add(Example.create(instance))
-					.list();
+					.createCriteria("hibernate.Item")
+					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;

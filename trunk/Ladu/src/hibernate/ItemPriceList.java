@@ -1,7 +1,6 @@
 package hibernate;
 
-// default package
-// Generated May 12, 2013 3:55:58 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,8 +11,8 @@ import java.util.Date;
 public class ItemPriceList implements java.io.Serializable {
 
 	private long itemPriceList;
-	private Long priceListFk;
-	private Long itemFk;
+	private PriceList priceList;
+	private Item item;
 	private Long discountXtra;
 	private BigDecimal salePrice;
 	private Date created;
@@ -25,11 +24,11 @@ public class ItemPriceList implements java.io.Serializable {
 		this.itemPriceList = itemPriceList;
 	}
 
-	public ItemPriceList(long itemPriceList, Long priceListFk, Long itemFk,
+	public ItemPriceList(long itemPriceList, PriceList priceList, Item item,
 			Long discountXtra, BigDecimal salePrice, Date created) {
 		this.itemPriceList = itemPriceList;
-		this.priceListFk = priceListFk;
-		this.itemFk = itemFk;
+		this.priceList = priceList;
+		this.item = item;
 		this.discountXtra = discountXtra;
 		this.salePrice = salePrice;
 		this.created = created;
@@ -43,20 +42,20 @@ public class ItemPriceList implements java.io.Serializable {
 		this.itemPriceList = itemPriceList;
 	}
 
-	public Long getPriceListFk() {
-		return this.priceListFk;
+	public PriceList getPriceList() {
+		return this.priceList;
 	}
 
-	public void setPriceListFk(Long priceListFk) {
-		this.priceListFk = priceListFk;
+	public void setPriceList(PriceList priceList) {
+		this.priceList = priceList;
 	}
 
-	public Long getItemFk() {
-		return this.itemFk;
+	public Item getItem() {
+		return this.item;
 	}
 
-	public void setItemFk(Long itemFk) {
-		this.itemFk = itemFk;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public Long getDiscountXtra() {

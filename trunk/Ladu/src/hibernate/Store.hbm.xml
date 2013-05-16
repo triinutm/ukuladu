@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="Store" table="STORE">
+    <class name="hibernate.Store" table="STORE">
         <id name="store" type="long">
             <column name="STORE" precision="10" scale="0" />
             <generator class="assigned" />
@@ -11,5 +11,23 @@
         <property name="name" type="string">
             <column name="NAME" length="200" />
         </property>
+        <set name="itemActionsForStoreToFk" table="ITEM_ACTION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STORE_TO_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemAction" />
+        </set>
+        <set name="itemActionsForStoreFromFk" table="ITEM_ACTION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STORE_FROM_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemAction" />
+        </set>
+        <set name="itemStores" table="ITEM_STORE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STORE_FK" precision="10" scale="0" />
+            </key>
+            <one-to-many class="hibernate.ItemStore" />
+        </set>
     </class>
 </hibernate-mapping>

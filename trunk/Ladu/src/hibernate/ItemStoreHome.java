@@ -1,23 +1,23 @@
 package hibernate;
 
-// default package
-// Generated May 12, 2013 3:56:00 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.List;
 import javax.naming.InitialContext;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
  * Home object for domain model class ItemStore.
- * @see .ItemStore
+ * @see hibernate.ItemStore
  * @author Hibernate Tools
  */
 public class ItemStoreHome {
 
-	private static final Logger log = Logger.getLogger(ItemStoreHome.class);
+	private static final Log log = LogFactory.getLog(ItemStoreHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -93,7 +93,7 @@ public class ItemStoreHome {
 		log.debug("getting ItemStore instance with id: " + id);
 		try {
 			ItemStore instance = (ItemStore) sessionFactory.getCurrentSession()
-					.get("ItemStore", id);
+					.get("hibernate.ItemStore", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -110,8 +110,8 @@ public class ItemStoreHome {
 		log.debug("finding ItemStore instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("ItemStore").add(Example.create(instance))
-					.list();
+					.createCriteria("hibernate.ItemStore")
+					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;

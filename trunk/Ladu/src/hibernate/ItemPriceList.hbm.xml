@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2013 3:55:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="ItemPriceList" table="ITEM_PRICE_LIST">
+    <class name="hibernate.ItemPriceList" table="ITEM_PRICE_LIST">
         <id name="itemPriceList" type="long">
             <column name="ITEM_PRICE_LIST" precision="10" scale="0" />
             <generator class="assigned" />
         </id>
-        <property name="priceListFk" type="java.lang.Long">
+        <many-to-one name="priceList" class="hibernate.PriceList" fetch="select">
             <column name="PRICE_LIST_FK" precision="10" scale="0" />
-        </property>
-        <property name="itemFk" type="java.lang.Long">
+        </many-to-one>
+        <many-to-one name="item" class="hibernate.Item" fetch="select">
             <column name="ITEM_FK" precision="10" scale="0" />
-        </property>
+        </many-to-one>
         <property name="discountXtra" type="java.lang.Long">
             <column name="DISCOUNT_XTRA" precision="10" scale="0" />
         </property>
