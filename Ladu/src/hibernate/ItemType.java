@@ -15,7 +15,7 @@ public class ItemType implements java.io.Serializable {
 	private String typeName;
 	private Long itemLevel;
 	private Set typeAttributes = new HashSet(0);
-	private Set itemTypes = new HashSet(0);
+	private Set<ItemType> itemTypes = new HashSet<ItemType>(0);
 	private Set items = new HashSet(0);
 
 	public ItemType() {

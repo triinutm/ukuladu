@@ -1,5 +1,6 @@
 package controller;
 
+import hibernate.HibernateDBConnection;
 import hibernate.UserAccount;
 
 import java.io.IOException;
@@ -28,16 +29,17 @@ public class LoginController extends BaseController {
 		request.setCharacterEncoding("UTF-8");
 		UserAccount userAccount = new UserAccount();
 		PWDecoder PWDecoder = new PWDecoder();
-		LaduDAO ladu= new LaduDAO();
+		HibernateDBConnection ladu= new HibernateDBConnection();
 		String userName=request.getParameter("userName");
 		String password=request.getParameter("password");
-		userAccount=ladu.getUserByUsername(userName);
+		userAccount=ladu.getUserByUserName(userName);
 
 		if(userAccount!=null){
 			String hashedPassword=PWDecoder.hashPassword(password);
 			if(userAccount.getPassw().equals(hashedPassword)){
 				request.getSession().setAttribute("user", userAccount);
-				response.sendRedirect("/R11_ladu/");
+				response.sendRedirect("/Ladu/");
+				System.out.println("I am sexmaniac");
 				return;
 			}else{
 				request.setAttribute("wrongpass", "Vale parool!");
