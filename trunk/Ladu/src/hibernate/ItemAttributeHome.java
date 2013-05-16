@@ -4,8 +4,8 @@ package hibernate;
 
 import java.util.List;
 import javax.naming.InitialContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.apache.log4j.Logger;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
@@ -17,7 +17,8 @@ import org.hibernate.criterion.Example;
  */
 public class ItemAttributeHome {
 
-	private static final Log log = LogFactory.getLog(ItemAttributeHome.class);
+	private static final Logger log = Logger
+			.getLogger(ItemAttributeHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
