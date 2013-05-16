@@ -1,6 +1,6 @@
 package hibernate;
 
-// Generated May 16, 2013 2:46:12 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 16, 2013 2:51:38 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,7 +16,7 @@ public class Item implements java.io.Serializable {
 	private Item item_1;
 	private ItemType itemType;
 	private UnitType unitType;
-	private Long supplierEnterpriseFk;
+	private Enterprise enterprise;
 	private String name;
 	private BigDecimal storePrice;
 	private BigDecimal salePrice;
@@ -39,7 +39,7 @@ public class Item implements java.io.Serializable {
 	}
 
 	public Item(long item, Item item_1, ItemType itemType, UnitType unitType,
-			Long supplierEnterpriseFk, String name, BigDecimal storePrice,
+			Enterprise enterprise, String name, BigDecimal storePrice,
 			BigDecimal salePrice, String producer, String description,
 			String producerCode, String singleItem, String serialNo,
 			Date created, Set itemPriceLists, Set itemAttributes, Set items,
@@ -48,7 +48,7 @@ public class Item implements java.io.Serializable {
 		this.item_1 = item_1;
 		this.itemType = itemType;
 		this.unitType = unitType;
-		this.supplierEnterpriseFk = supplierEnterpriseFk;
+		this.enterprise = enterprise;
 		this.name = name;
 		this.storePrice = storePrice;
 		this.salePrice = salePrice;
@@ -96,12 +96,12 @@ public class Item implements java.io.Serializable {
 		this.unitType = unitType;
 	}
 
-	public Long getSupplierEnterpriseFk() {
-		return this.supplierEnterpriseFk;
+	public Enterprise getEnterprise() {
+		return this.enterprise;
 	}
 
-	public void setSupplierEnterpriseFk(Long supplierEnterpriseFk) {
-		this.supplierEnterpriseFk = supplierEnterpriseFk;
+	public void setEnterprise(Enterprise enterprise) {
+		this.enterprise = enterprise;
 	}
 
 	public String getName() {
