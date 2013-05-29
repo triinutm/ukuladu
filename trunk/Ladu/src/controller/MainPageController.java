@@ -32,11 +32,11 @@ public class MainPageController extends HttpServlet {
 		userAccount = (UserAccount) request.getSession().getAttribute("user");
 		if(userAccount != null) {
 			System.out.println("!");
+			response.sendRedirect("/Ladu/MainPage.jsp");
 		} else {
 			System.out.println("SITT");
 			response.sendRedirect("/Ladu/login.jsp");
 		}
-		
 	}
 
 	/**
