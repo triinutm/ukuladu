@@ -17,7 +17,7 @@ if ( request.getAttribute("cat").toString() != null &&
 }
 if ( request.getAttribute("editCat") != null && 
 		!request.getAttribute("editCat").toString().equalsIgnoreCase("-1") ) {
-	out.println("Lisa uus");
+	out.println("Lisa uus" + request.getAttribute("editCat").toString());
 }
 %>
 </body>
