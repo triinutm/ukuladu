@@ -48,6 +48,11 @@
 					out.println("<a href=''>Klassidiagramm </a>&nbsp;&nbsp;");
 				%>
 			</td>
+			<td>
+				<%
+					out.println("<a href='/pricelist'>Hinnakiri</a>&nbsp;&nbsp;");
+				%>
+			</td>
 		</tr>
 	</table>
 </body>
