@@ -43,9 +43,10 @@ public class MainPageController extends HttpServlet {
 			if (request.getParameter("cat") != null){
 				cat = Long.valueOf(request.getParameter("cat")).longValue();
 				HibernateDBConnection hbConn = new HibernateDBConnection();
-				ItemType selItem = hbConn.getItemTypeById((int) cat);
+				ItemType selItem = hbConn.getItemTypeById(cat);
 				Set<ItemType> selItemSubs = selItem.getItemTypes();
-				if ( selItemSubs != null && selItemSubs.size() == 0 ) {
+				if ( selItemSubs != null && selItemSubs.isEmpty() ) {
+					System.out.println("suurus:" + selItemSubs.size());
 					request.setAttribute("editCat", cat);
 				}
 			}

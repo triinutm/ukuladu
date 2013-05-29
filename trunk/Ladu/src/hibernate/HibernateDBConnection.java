@@ -50,7 +50,7 @@ public class HibernateDBConnection {
 		return items;
 	}
 	
-	public ItemType getItemTypeById(int id){
+	public ItemType getItemTypeById(long id){
 		Session session = null;
 		ItemType item = new ItemType();
 		try {
