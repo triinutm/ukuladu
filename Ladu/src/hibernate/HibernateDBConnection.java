@@ -68,5 +68,21 @@ public class HibernateDBConnection {
 		}
 		return item;
 	}
+	
+	public Employee getEmployeeById(long l){
+		Session session= null;
+		Employee emp = new Employee();
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query q = session.createQuery("from Employee where employee = :empID");
+		    q.setParameter("empID", l);
+		    emp = (Employee) q.list().get(0);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return emp;
+	}
 
 }

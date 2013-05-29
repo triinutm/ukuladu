@@ -7,8 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import org.apache.log4j.Logger;
+
+
 
 public class DBConnection {
+	 static Logger logger = Logger.getLogger(DBConnection.class);
 	
 	public static Connection getConnection() {
 		Connection db_connection=null  ;	
@@ -81,5 +85,22 @@ public class DBConnection {
 			}
 		}
 	}
+	
+	 public static ResultSet execute(String sql){
+         Connection connection = getConnection();
+         try {
+                 Statement statement = connection.createStatement();
+                 ResultSet result = statement.executeQuery(sql);
+                 return result;
+         } catch (SQLException e) {
+                 return null;
+         }finally{
+                 try {
+                         connection.close();
+                 } catch (SQLException e) {
+                         logger.error("Yhenduse sulgemine eba6nnestus!");
+                 }
+         }  
+ }    
 
 }
