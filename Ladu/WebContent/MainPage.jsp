@@ -9,8 +9,16 @@
 <body>
 <%@ include file="MenuBar.jsp" %>
 <%
-String treeView = (String)request.getSession().getAttribute("treeView"); 
+String treeView = (String)request.getAttribute("treeView"); 
 out.println(treeView);
+if ( request.getAttribute("cat").toString() != null &&
+		!request.getAttribute("cat").toString().equalsIgnoreCase("-1") ) {
+	out.println("Otsi");
+}
+if ( request.getAttribute("editCat") != null && 
+		!request.getAttribute("editCat").toString().equalsIgnoreCase("-1") ) {
+	out.println("Lisa uus");
+}
 %>
 </body>
 </html>

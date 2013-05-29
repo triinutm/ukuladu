@@ -49,5 +49,24 @@ public class HibernateDBConnection {
 		}
 		return items;
 	}
+	
+	public ItemType getItemTypeById(int id){
+		Session session = null;
+		ItemType item = new ItemType();
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query q = session.createQuery("from ItemType where itemType = :itemId");
+		    q.setParameter("itemId", id);
+		    item = (ItemType) q.list().get(0);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return item;
+	}
 
 }
