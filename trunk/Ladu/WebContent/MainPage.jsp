@@ -8,6 +8,9 @@
 </head>
 <body>
 <%@ include file="MenuBar.jsp" %>
-<p>Pealeht</p>
+<%
+String treeView = (String)request.getSession().getAttribute("treeView"); 
+out.println(treeView);
+%>
 </body>
 </html>
