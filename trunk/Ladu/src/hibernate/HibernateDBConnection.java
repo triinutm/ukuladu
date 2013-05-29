@@ -37,11 +37,8 @@ public class HibernateDBConnection {
 		try {
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			items = session.createQuery("from ItemType as it").list();
-//			Query q = session.createQuery("from ItemType as it");
-//		    q.setParameter("itemType", "NULL");
-		    
-//		    items = q.list()
+			items = session.createQuery("from ItemType as it where itemType_1 is null ").list();
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
