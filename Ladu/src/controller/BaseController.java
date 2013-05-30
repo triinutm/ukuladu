@@ -22,6 +22,7 @@ public abstract class BaseController extends HttpServlet {
 			doOnGet(request, response);
 		}catch (Exception e){
 			response.sendRedirect("/Ladu/viga");
+			
 			e.printStackTrace();
 		}
 

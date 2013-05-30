@@ -230,11 +230,16 @@ public class PriceListDAO {
 
         public List <CustomerM> searchCustomer(String name) {
                 List <CustomerM> list = new LinkedList<CustomerM>();
-                ResultSet result = DBConnection.execute("SELECT P.subject_id ,P.subject_name, P.subject_type FROM"+
-                "(SELECT customer AS subject_id, 'isik'  AS subject_type, (first_name || ' ' || last_name) AS subject_name " +
+                ResultSet result = DBConnection.execute("SELECT subject_id ,subject_name, subject_type FROM"+
+                "(SELECT customer AS subject_id, 'isik'  AS subject_type, to_char(first_name || ' ' || last_name) AS subject_name " +
                 " FROM person INNER JOIN customer ON person=subject_fk WHERE subject_type_fk=1 AND UPPER(last_name) LIKE UPPER('"+name+"%')"+
-                        "UNION SELECT customer AS subject_id, 'ettevote'  AS subject_type, name AS subject_name FROM enterprise INNER JOIN "+
-                "customer ON enterprise=subject_fk WHERE subject_type_fk=2 AND UPPER(name) LIKE UPPER('"+name+"%' )) AS P");
+                        "UNION SELECT customer AS subject_id, 'ettevote'  AS subject_type, to_char( name) AS subject_name FROM enterprise INNER JOIN "+
+                "customer ON enterprise=subject_fk WHERE subject_type_fk=2 AND UPPER(name) LIKE UPPER('"+name+"%' )) ");
+                
+                
+                
+                
+                
 
                 if (result == null) {
                         return null;                    
