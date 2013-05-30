@@ -41,6 +41,8 @@ public class PriceListController extends BaseController {
         protected void doOnGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 PriceListDAO dao = new PriceListDAO();
                 RequestDispatcher view;
+                
+                
                 if (request.getParameter("action") != null){
                         view = doActions(request, dao);
                 }

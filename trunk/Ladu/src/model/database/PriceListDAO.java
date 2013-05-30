@@ -27,24 +27,27 @@ public class PriceListDAO {
         
         public List<PriceList> findAll(){
                 List<PriceList> list = new LinkedList<PriceList>();
-                ResultSet result = DBConnection.execute("SELECT price_list, price_list_status_type_fk, default_discount_xtra, date_from, date_to, note FROM price_list ORDER BY price_list");
+                ResultSet result = DBConnection.execute("SELECT price_list, price_list_status_type_fk, default_discount_xtra, date_from, date_to, note FROM price_list ");
                 if (result == null) {
+                	
                         return null;
                 }
                 try {
-                        while (result.next()) {
+                    while (result.next()) {
+                    	System.out.println("Olen sees");
                                 PriceList p = new PriceList();
                                 p.setPriceList(result.getLong("price_list"));
-                                p.setDefaultDiscountXtra(result.getLong("default_discount_xtra"));
-                                p.setPriceListStatusType(findStatusType(result.getInt("price_list_status_type_fk")));
+                                  p.setDefaultDiscountXtra(result.getLong("default_discount_xtra"));
+                                  p.setPriceListStatusType(findStatusType(result.getInt("price_list_status_type_fk")));
                                 p.setDateFrom(result.getDate("date_from"));
                                 p.setDateTo(result.getDate("date_to"));
                                 p.setNote(result.getString("note"));
                                 list.add(p);
+                           
                         }
                         return list;
                 } catch (SQLException e) {
-                        logger.error("PriceListDAO.findAll() : "+e.getMessage());
+                	logger.error("PriceListDAO.findAll() : "+e.getMessage());
                         return null;
                 }       
         }
@@ -54,7 +57,8 @@ public class PriceListDAO {
                 PriceListStatusType s= new PriceListStatusType();
                 try {
                         if (!result.next()) {
-                                return null;
+                                                   return null;
+                                
                         }
                         else {
                                 s.setPriceListStatusType(result.getLong("price_list_status_type"));
@@ -63,6 +67,7 @@ public class PriceListDAO {
                         }
                         return s;
                 } catch (SQLException e) {
+                	System.out.println(e.getMessage());
                         logger.error("PriceListDAO.findStatusType() : "+e.getMessage());
                         return null;
                 }       
@@ -249,6 +254,7 @@ public class PriceListDAO {
                 List <CustomerM> list = new LinkedList<CustomerM>();
                 ResultSet result = DBConnection.execute("SELECT kood, klient FROM f_leia_kliendid("+price_list+")");       
                 if (result == null) {
+                	System.out.println("Eileia midagi");
                         return null;
                 }
                 try {

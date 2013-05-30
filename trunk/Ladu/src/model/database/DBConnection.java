@@ -91,15 +91,19 @@ public class DBConnection {
          try {
                  Statement statement = connection.createStatement();
                  ResultSet result = statement.executeQuery(sql);
+              
                  return result;
+                
          } catch (SQLException e) {
                  return null;
-         }finally{
-                 try {
-                         connection.close();
-                 } catch (SQLException e) {
-                         logger.error("Yhenduse sulgemine eba6nnestus!");
-                 }
+//         }finally{
+//                 try {
+////                         connection.close();
+//                	 System.out.println("hy");
+//                 } catch (SQLException e) {
+//                	 System.out.println("Ühendus kinni pandud!");
+//                         logger.error("Yhenduse sulgemine eba6nnestus!");
+//                 }
          }  
  }    
 
