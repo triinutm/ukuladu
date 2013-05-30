@@ -50,7 +50,7 @@
 			</td>
 			<td>
 				<%
-					out.println("<a href='/pricelist'>Hinnakiri</a>&nbsp;&nbsp;");
+					out.println("<a href='"+request.getContextPath()+"/pricelist'>Hinnakiri</a>&nbsp;&nbsp;");
 				%>
 			</td>
 		</tr>

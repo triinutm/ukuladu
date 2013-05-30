@@ -39,7 +39,7 @@
 						"</td><td><a HREF='pricelist?action=delete&uid="+ id
 						+ "'TARGET='_self'><strong>kustuta</strong></a></td></tr>");
 			}
-			out.println("</table><input type=button onclick=\"window.location.href='/R11_ladu/pricelist?id=new'\"value='Loo uus'>");
+			out.println("</table><input type=button onclick=\"window.location.href='/Ladu/pricelist?id=new'\"value='Loo uus'>");
 		} catch (Exception ex) {
 			out.println("Mingi viga: " + ex.getMessage());
 		}		
