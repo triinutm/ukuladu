@@ -7,6 +7,7 @@ import java.util.Set;
 
 import hibernate.*;
 
+import model.CustomerM;
 import model.database.LaduDAO;
 import model.database.PriceListDAO;
 import model.item.dao.HibernateUtil;
@@ -47,9 +48,16 @@ public class Test {
 		
 		PriceListDAO dao = new PriceListDAO();
 		
-		System.out.println(dao.findCustomersById(1));
+//		List<CustomerM> lits = new ArrayList<CustomerM>();
+//		lits=dao.findCustomersById(1);
+//		for (CustomerM customerM : lits) {
+//			System.out.println(customerM.getId());
+//			System.out.println(customerM.getName());
+//		}
 		
-		System.out.println(dao.findAll());
+		System.out.println(dao.findItemsById(1));
+		
+//		System.out.println(dao.findAll());
 		
 //		System.out.println(hDBC.getUserByUserName("juhan").getPassw());
 //
