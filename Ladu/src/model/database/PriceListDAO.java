@@ -1,6 +1,7 @@
 
 package model.database;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import oracle.jdbc.OracleResultSet;
+import oracle.jdbc.internal.OracleTypes;
 
 import org.apache.log4j.Logger;
 
@@ -252,23 +256,50 @@ public class PriceListDAO {
 
         public List<CustomerM> findCustomersById(int price_list) {
                 List <CustomerM> list = new LinkedList<CustomerM>();
-                ResultSet result = DBConnection.execute("SELECT kood, klient FROM f_leia_kliendid("+price_list+")");       
-                if (result == null) {
-                	System.out.println("Eileia midagi");
-                        return null;
-                }
+                ResultSet rs = null;
+                Connection connection = DBConnection.getConnection();
                 try {
-                        while (result.next()) {
-                                CustomerM c = new CustomerM();
-                                c.setId(result.getInt("kood"));
-                                c.setName(result.getString("klient"));
-                                list.add(c);
-                        }
-                        return list;
-                } catch (SQLException e) {
-                        logger.error("PriceListDAO.findCustomersById() : "+e.getMessage());
-                        return null;
-                }
+					CallableStatement call = connection.prepareCall("{?=call get_clients (?)}");
+					call.registerOutParameter(1, OracleTypes.CURSOR);
+					call.setInt(2, price_list);
+					call.execute();
+					
+					rs= (ResultSet) call.getObject(1);
+					
+					   while (rs.next()) {
+                       CustomerM c = new CustomerM();
+                       c.setId(rs.getInt("kood"));
+                       c.setName(rs.getString("klient"));
+                       list.add(c);
+               }
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                return list;
+//                OracleResultSet result = (OracleResultSet) DBConnection.execute("SELECT get_clients("+price_list+") from DUAL");       
+//                if (result == null) {
+//                         return null;
+//                }
+//                try {
+//                	
+//                
+//                        while (result.next()) {
+////                                CustomerM c = new CustomerM();
+////                                c.setId(result.getS("kood"));
+////                                c.setName(result.getString("klient"));
+////                                list.add(c);
+////                        	System.out.println(result.getString("kood"));
+////                        	System.out.println(result.);
+////                        	
+//                        	
+//                        }
+//                        return list;
+//                } catch (SQLException e) {
+//                	System.out.println("Uku on munn: + " +e.getMessage());
+//                        logger.error("PriceListDAO.findCustomersById() : "+e.getMessage());
+//                        return null;
+//                }
         }
 
         public void addCustomer(int customer, int price_list) {
@@ -302,8 +333,9 @@ public class PriceListDAO {
 
         public List<ItemM> findItemsById(int price_list) {
                 List <ItemM> list = new LinkedList<ItemM>();
-                ResultSet result = DBConnection.execute("SELECT P.item_price_list, I.item, I.name, I.sale_price, P.discount_xtra, P.sale_price AS price_list_sale_price FROM item AS I INNER JOIN item_price_list AS P ON I.item=P.item_fk WHERE P.price_list_fk="+price_list+" ORDER BY item");
+                ResultSet result = DBConnection.execute("SELECT P.item_price_list, I.item, I.name, I.sale_price, P.discount_xtra, P.sale_price AS price_list_sale_price FROM item  I INNER JOIN item_price_list  P ON I.item=P.item_fk WHERE P.price_list_fk="+price_list+" ORDER BY item");
                 if (result == null) {
+                	System.out.println("KAdi on munn");
                         return null;
                 }
                 try {

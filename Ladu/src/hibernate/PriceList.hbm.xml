@@ -35,13 +35,13 @@
         <property name="updated" type="date">
             <column name="UPDATED" length="7" />
         </property>
-        <set name="itemPriceLists" table="ITEM_PRICE_LIST" inverse="true" lazy="true" fetch="select">
+        <set name="itemPriceLists" table="ITEM_PRICE_LIST" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="PRICE_LIST_FK" precision="10" scale="0" />
             </key>
             <one-to-many class="hibernate.ItemPriceList" />
         </set>
-        <set name="customerPriceLists" table="CUSTOMER_PRICE_LIST" inverse="true" lazy="true" fetch="select">
+        <set name="customerPriceLists" table="CUSTOMER_PRICE_LIST" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="PRICE_LIST_FK" precision="10" scale="0" />
             </key>
