@@ -13,7 +13,6 @@ public class ItemAction implements java.io.Serializable {
 	private long itemAction;
 	private Store storeByStoreFromFk;
 	private ItemActionType itemActionType;
-	private Employee employee;
 	private Store storeByStoreToFk;
 	private Long itemFk;
 	private Date actionDate;
@@ -22,7 +21,6 @@ public class ItemAction implements java.io.Serializable {
 	private BigDecimal actionPrice;
 	private String actionNote;
 	private Date created;
-	private Item item;
 
 	public ItemAction() {
 	}
@@ -137,12 +135,5 @@ public class ItemAction implements java.io.Serializable {
 		this.created = created;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
 
 }
