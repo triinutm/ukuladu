@@ -46,7 +46,7 @@ public class WarehouseService {
                 ItemAction itemAction = new ItemAction();
                 LaduDAO laduDAO = new LaduDAO();
                 
-                itemAction.setEmployee(userAccount.getEmployeeBySubjectFk());
+                itemAction.setCreatedBy(userAccount.getEmployeeBySubjectFk());
                 itemAction.setItem(item);
                 String actionPrice = getString(paramtereMap, "warehouse_register_price");
                 BigDecimal actionPriceBigInt = new BigDecimal(actionPrice);
@@ -76,7 +76,7 @@ public class WarehouseService {
                 
                 if(itemStore != null){
                         Long itemCountBefore = itemStore.getItemCount();
-                        itemStore.setItemCount(itemCountBefore.add(itemCountAdded));
+                        itemStore.setItemCount(itemCountBefore+(itemCountAdded));
                         laduDAO.updateItemStore(itemStore);
                 }else{
                         ItemStore newItemStore = new ItemStore();
@@ -137,7 +137,7 @@ public class WarehouseService {
                 itemAction.setStoreByStoreFromFk(storeFrom);
                 itemAction.setStoreByStoreToFk(storeTo);
                 
-                itemAction.setEmployee(userAccount.getEmployeeBySubjectFk());
+                itemAction.setCreatedBy(userAccount.getEmployeeBySubjectFk());
                 itemAction.setItem(item);
                 
                 String itemCount = getString(paramtereMap, "warehouse_move_quantity");
@@ -175,7 +175,7 @@ public class WarehouseService {
                 
                 itemAction.setStoreByStoreFromFk(storeFrom);
                 
-                itemAction.setEmployee(userAccount.getEmployeeBySubjectFk());
+                itemAction.setCreatedBy(userAccount.getEmployeeBySubjectFk());
                 itemAction.setItem(item);
                 
                 itemAction.setItemActionType(laduDAO.getItemActionType(2));

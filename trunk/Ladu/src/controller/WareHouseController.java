@@ -39,18 +39,18 @@ public class WareHouseController extends BaseController {
                         request.setCharacterEncoding("UTF-8");
                         
                         if(request.getParameter("item") != null){
-                                WareHouseService wareHouseService = new WareHouseService();
+                                WarehouseService wareHouseService = new WarehouseService();
                                 Integer itemId = Integer.parseInt(request.getParameter("item"));
-                                DBUtil dbUtil = new DBUtil();
-                                Item item = dbUtil.getItemById(itemId);
-                                List<Store> allStores = dbUtil.getAllWareHouses();
+                                LaduDAO ladu = new LaduDAO();
+                                Item item = ladu.getItemById(itemId);
+                                List<Store> allStores = ladu.getAllWareHouses();
                                 if(item != null){
                                         request.setAttribute("item", item);
                                         if(allStores != null){
                                                 request.setAttribute("allStores", allStores);
                                         }
                                 }
-                                List<ItemStore> itemStores = dbUtil.getItemStoresByItem(item);
+                                List<ItemStore> itemStores = ladu.getItemStoresByItem(item);
                                 request.setAttribute("itemStores", itemStores);
                                 String scontext = getServletContext().getRealPath("/");
                                 wareHouseService.createItemStoreXml(item,scontext);
@@ -68,12 +68,12 @@ public class WareHouseController extends BaseController {
                 
                 UserAccount user = (UserAccount)request.getSession().getAttribute("user");
                 Map<String,String[]> paramtereMap = request.getParameterMap();
-                DBUtil dbUtil = new DBUtil();
-                WareHouseService wareHouseService = new WareHouseService();
+                LaduDAO ladu = new LaduDAO();
+                WarehouseService wareHouseService = new WarehouseService();
                 
-                List<Store> allStores = dbUtil.getAllWareHouses();
+                List<Store> allStores = ladu.getAllWareHouses();
                 int itemId = Integer.parseInt(wareHouseService.getString(paramtereMap, "item_id"));
-                Item item = dbUtil.getItemById(itemId);
+                Item item = ladu.getItemById(itemId);
                 
                 if(request.getParameter("action").equals("register") && user != null && item != null && allStores != null){
                         
@@ -81,8 +81,8 @@ public class WareHouseController extends BaseController {
                         if(itemActionRegister != null){
                                 String itemCount = wareHouseService.getString(paramtereMap, "warehouse_register_quantity");
                                 String actionPrice = wareHouseService.getString(paramtereMap, "warehouse_register_price");
-                                dbUtil.updateItemPriceInWareHouse(item, Integer.parseInt(itemCount),Double.parseDouble(actionPrice));
-                                dbUtil.insertItemAction(itemActionRegister);                            
+                                ladu.updateItemPriceInWareHouse(item, Integer.parseInt(itemCount),Double.parseDouble(actionPrice));
+                                ladu.insertItemAction(itemActionRegister);                            
                                 request.setAttribute("register_successful", "Toote arvele v6tmine 6nnestus!");
                         }
                         request.setAttribute("item", item);
@@ -93,22 +93,22 @@ public class WareHouseController extends BaseController {
                         long selectedStoreFromId = Integer.parseInt(selectedStoreFrom);
                         
                         String itemCountOnMove =  wareHouseService.getString(paramtereMap, "warehouse_remove_quantity");
-                        BigDecimal itemCountOnMoveBigDecimal = new BigDecimal(itemCountOnMove); 
+                        Long itemCountOnMove1 = new Long(itemCountOnMove); 
                         
                         ItemStore itemStoreFrom = wareHouseService.getItemStore(item, allStores, selectedStoreFromId);
                         
                         if(itemStoreFrom.getItemCount() == null){ //kontrollime, kas saadud lao kirjes on tootel kogus olemas.
                                 request.setAttribute("move_from_err", "Antud toodet selles laos pole!");
                         }
-                        else if(itemCountOnMoveBigDecimal.compareTo(itemStoreFrom.getItemCount()) == 1){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
+                        else if(itemCountOnMove1 == (itemStoreFrom.getItemCount()) ){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
                                 request.setAttribute("move_from_err_counts", "Toodet pole laos piisavalt!");
                         }else{
-                                itemStoreFrom.setItemCount(itemStoreFrom.getItemCount().subtract(itemCountOnMoveBigDecimal)); //lahutame olemasolevast laost toodete koguse maha
+                                itemStoreFrom.setItemCount(itemStoreFrom.getItemCount()- (itemCountOnMove1)); //lahutame olemasolevast laost toodete koguse maha
                                         
-                                        dbUtil.updateItemStore(itemStoreFrom);
+                                        ladu.updateItemStore(itemStoreFrom);
                                         ItemAction itemActionRemove = wareHouseService.createWareHouseRemoveItemAction(user, paramtereMap, allStores, item);
                                         if(itemActionRemove != null){
-                                                dbUtil.insertItemAction(itemActionRemove);
+                                                ladu.insertItemAction(itemActionRemove);
                                                 request.setAttribute("remove_successful", "Toote eemaldamine 6nnestus!");
                                         }
                                 
@@ -127,7 +127,7 @@ public class WareHouseController extends BaseController {
                         long selectedStoreToId = Integer.parseInt(selectedStoreTo);
                         
                         String itemCountOnMove =  wareHouseService.getString(paramtereMap, "warehouse_move_quantity");
-                        BigDecimal itemCountOnMoveBigDecimal = new BigDecimal(itemCountOnMove); 
+                        Long itemCountOnMoveBigDecimal = new Long(itemCountOnMove); 
                         
                         ItemStore itemStoreFrom = wareHouseService.getItemStore(item, allStores, selectedStoreFromId);
                         ItemStore itemStoreTo = wareHouseService.getItemStore(item, allStores, selectedStoreToId);
@@ -135,20 +135,20 @@ public class WareHouseController extends BaseController {
                         if(itemStoreFrom.getItemCount() == null){ //kontrollime, kas saadud lao kirjes on tootel kogus olemas.
                                 request.setAttribute("move_from_err", "Antud toodet selles laos pole!");
                         }
-                        else if(itemCountOnMoveBigDecimal.compareTo(itemStoreFrom.getItemCount()) == 1){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
+                        else if(itemCountOnMoveBigDecimal == (itemStoreFrom.getItemCount()) ){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
                                 request.setAttribute("move_from_err_counts", "Toodet pole laos piisavalt!");
                         }else{
                                 if(itemStoreTo != null){ //kui toode on olemas laos, siis lisame kogust.
                                         
-                                        itemStoreFrom.setItemCount(itemStoreFrom.getItemCount().subtract(itemCountOnMoveBigDecimal)); //lahutame olemasolevast laost toodete koguse maha
-                                        itemStoreTo.setItemCount(itemStoreTo.getItemCount().add(itemCountOnMoveBigDecimal)); //lisame uude lattu toodete koguse juurde
+                                        itemStoreFrom.setItemCount(itemStoreFrom.getItemCount() - (itemCountOnMoveBigDecimal)); //lahutame olemasolevast laost toodete koguse maha
+                                        itemStoreTo.setItemCount(itemStoreTo.getItemCount() + (itemCountOnMoveBigDecimal)); //lisame uude lattu toodete koguse juurde
                                         
-                                        dbUtil.updateItemStore(itemStoreFrom);
-                                        dbUtil.updateItemStore(itemStoreTo);
+                                        ladu.updateItemStore(itemStoreFrom);
+                                        ladu.updateItemStore(itemStoreTo);
                                         
                                         ItemAction itemActionMove = wareHouseService.createWareHouseMoveItemAction(user, paramtereMap, allStores, item);
                                         if(itemActionMove != null){
-                                                dbUtil.insertItemAction(itemActionMove);
+                                                ladu.insertItemAction(itemActionMove);
                                                 request.setAttribute("move_successful", "Toote ladude vahel liigutamine 6nnestus!");
                                         }
                                 }else{ //kui toodet lisatavas laos pole, siis loome uue lao kirje
@@ -156,11 +156,11 @@ public class WareHouseController extends BaseController {
                                         newItemStore.setItem(item);
                                         newItemStore.setItemCount(itemCountOnMoveBigDecimal);
                                         newItemStore.setStore(wareHouseService.getSelectedStore(allStores, selectedStoreToId));
-                                        dbUtil.insertItemStore(newItemStore);
+                                        ladu.insertItemStore(newItemStore);
                                         
                                         ItemAction itemActionMove = wareHouseService.createWareHouseMoveItemAction(user, paramtereMap, allStores, item);
                                         if(itemActionMove != null){
-                                                dbUtil.insertItemAction(itemActionMove);
+                                                ladu.insertItemAction(itemActionMove);
                                                 request.setAttribute("move_successful", "Toote ladude vahel liigutamine 6nnestus!");
                                         }
                                 }
@@ -170,7 +170,7 @@ public class WareHouseController extends BaseController {
                 }else{
                         request.setAttribute("parameter_needed", "Laotoimingute tegemiseks on parameeter action vajalik!");
                 }
-                List<ItemStore> itemStores = dbUtil.getItemStoresByItem(item);
+                List<ItemStore> itemStores = ladu.getItemStoresByItem(item);
                 request.setAttribute("itemStores", itemStores);
                 String scontext = getServletContext().getRealPath("/");
                 wareHouseService.createItemStoreXml(item,scontext);
