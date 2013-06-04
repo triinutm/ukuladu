@@ -283,7 +283,7 @@ public class LaduDAO {
             item.setUnitType((UnitType) session.get(UnitType.class, 1L));
             item.setItemType((ItemType) session.get(ItemType.class,
                             new Long(model.getItemType())));
-            item.setEnterprise((Enterprise) session.get(Enterprise.class, 2));
+            item.setEnterprise((Enterprise) session.get(Enterprise.class, new Long(2)));
             Set<ItemAttribute> attributes = new HashSet<ItemAttribute>();
             LaduDAO ladu = new LaduDAO();
             // Otsime toote attribuudid ning paneme ID j�rgi map-i
