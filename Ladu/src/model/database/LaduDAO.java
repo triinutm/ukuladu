@@ -218,7 +218,7 @@ public class LaduDAO {
     }
 
     /**
-     * Meetod leiab Item objekti id järgi.
+     * Meetod leiab Item objekti id jï¿½rgi.
      * 
      * @param id
      *            - otsitava toote id
@@ -242,7 +242,7 @@ public class LaduDAO {
     }
 
     /**
-     * Meetod küsib andmebaasist kõik laod.
+     * Meetod kï¿½sib andmebaasist kï¿½ik laod.
      * 
      * @return - null, kui ladusid ei leita.
      */
@@ -285,7 +285,7 @@ public class LaduDAO {
             item.setEnterprise((Enterprise) session.get(Enterprise.class, 2));
             Set<ItemAttribute> attributes = new HashSet<ItemAttribute>();
             LaduDAO ladu = new LaduDAO();
-            // Otsime toote attribuudid ning paneme ID järgi map-i
+            // Otsime toote attribuudid ning paneme ID jï¿½rgi map-i
             List<TypeAttribute> itemAttributes =ladu
                             .getTypeAttributesByItemType(Integer.parseInt(model
                                             .getItemType()));
@@ -295,11 +295,11 @@ public class LaduDAO {
             }
             for (Long key : model.getAttributes().keySet()) {
                     AttributeModel currentAttribute = model.getAttributes().get(key);
-                    // tühja attribuuti ei lisa
+                    // tï¿½hja attribuuti ei lisa
                     if (StringUtils.isNotBlank(currentAttribute.getAttributeValue())) {
                             ItemAttribute attribute = new ItemAttribute();
                             TypeAttribute attributeDefinition = attributeMap.get(key);
-                            // kas on tekstiväli
+                            // kas on tekstivï¿½li
                             if (attributeDefinition.getItemAttributeType().getDataType()
                                             .equals(1L)) {
                                     attribute.setDataType(1L);
@@ -346,7 +346,7 @@ public class LaduDAO {
                     existingAttributes.put(at.getItemAttribute(), at);
             }
            LaduDAO ladu = new LaduDAO();
-            // Otsime toote attribuudid ning paneme ID järgi map-i
+            // Otsime toote attribuudid ning paneme ID jï¿½rgi map-i
             List<TypeAttribute> itemAttributes = ladu
                             .getTypeAttributesByItemType(Integer.parseInt(model
                                             .getItemType()));
@@ -378,12 +378,12 @@ public class LaduDAO {
 
                             }
                     } else {
-                            // tühja väärtust pole mõtet lisada
+                            // tï¿½hja vï¿½ï¿½rtust pole mï¿½tet lisada
                             if (StringUtils
                                             .isNotBlank(currentAttribute.getAttributeValue())) {
                                     ItemAttribute attribute = new ItemAttribute();
                                     TypeAttribute attributeDefinition = attributeMap.get(key);
-                                    // kas on tekstiväli
+                                    // kas on tekstivï¿½li
                                     if (attributeDefinition.getItemAttributeType()
                                                     .getDataType().equals(1L)) {
                                             attribute.setDataType(1L);
@@ -410,6 +410,8 @@ public class LaduDAO {
     }
 
     public List<Item> searchItems(SearchForm form, String catalog) {
+    	    System.out.println(catalog);
+    	    System.out.println(form.getAttributes().size());
             Session session = HibernateUtil.getSessionFactory().openSession();
             List<Item> items = new ArrayList<Item>();
             try {
@@ -508,11 +510,11 @@ public class LaduDAO {
     }
 
     /**
-     * Meetod leiab ItemActionType objekti id järgi.
+     * Meetod leiab ItemActionType objekti id jï¿½rgi.
      * 
      * @param id
-     *            - otsitava lao toimingu tüübi id
-     * @return - null kui lao toimingu tüüpi ei leita.
+     *            - otsitava lao toimingu tï¿½ï¿½bi id
+     * @return - null kui lao toimingu tï¿½ï¿½pi ei leita.
      */
     public ItemActionType getItemActionType(int id) {
 
@@ -602,7 +604,7 @@ public class LaduDAO {
 
     /**
      * Meetod, mis uuendab toote hinna laos (aka modelit ItemStore), kutsutakse
-     * välja andmebaasi protseduur.
+     * vï¿½lja andmebaasi protseduur.
      * 
      * @param item
      *            - toode, mille hinda uuendatakse.
@@ -632,7 +634,7 @@ public class LaduDAO {
     }
 
     /**
-     * Meetod, mis leiab ItemStore kande itemi ja store'i põhjal.
+     * Meetod, mis leiab ItemStore kande itemi ja store'i pï¿½hjal.
      * 
      * @param item - toode.
      * @param store - ladu.
@@ -665,7 +667,7 @@ public class LaduDAO {
     }
     
     /**
-     * Meetod, mis leiab ItemStore kande itemi ja store'i põhjal.
+     * Meetod, mis leiab ItemStore kande itemi ja store'i pï¿½hjal.
      * 
      * @param item - toode.
      * @param store - ladu.
