@@ -96,14 +96,14 @@ public class DBConnection {
                 
          } catch (SQLException e) {
                  return null;
-//         }finally{
-//                 try {
-////                         connection.close();
-//                	 System.out.println("hy");
-//                 } catch (SQLException e) {
-//                	 System.out.println("Ühendus kinni pandud!");
-//                         logger.error("Yhenduse sulgemine eba6nnestus!");
-//                 }
+         }finally{
+                 try {
+                         connection.close();
+                	 System.out.println("hy");
+                 } catch (SQLException e) {
+                	 System.out.println("Ã¼hendus kinni pandud!");
+                         logger.error("Yhenduse sulgemine eba6nnestus!");
+                 }
          }  
  }    
 

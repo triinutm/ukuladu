@@ -48,11 +48,13 @@ public class SearchController extends HttpServlet {
 			LaduDAO m = new LaduDAO();
 			System.out.println("enne item");
 			ItemType item =  m.getItemTypeById(Integer.parseInt(catalog));
+			System.out.println(item.getTypeName());
 			System.out.println("item saadud");
 			form.setType(item.getTypeName());
 			System.out.println("enne listi");
 			List<TypeAttribute> itemAttributes = m.getTypeAttributesByItemType(Integer.parseInt(catalog));
 			System.out.println("peale lisi");
+			System.out.println(itemAttributes.size() + "");
 			for (TypeAttribute attribute : itemAttributes) {
 				System.out.println("foris");
 				AttributeModel attibute = new AttributeModel();

@@ -122,7 +122,7 @@ public class LaduDAO {
             try {
                     session.getTransaction().begin();
                     itemType = (ItemType) session.get(ItemType.class, new Long(id));
-                    // session.getTransaction().commit();
+                    session.getTransaction().commit();
             } catch (Exception e) {
                     session.getTransaction().rollback();
                     System.out.println("15");
@@ -208,6 +208,7 @@ public class LaduDAO {
                     Query q = session
                                     .createQuery("from TypeAttribute where itemType.itemType = :id order by orderby");
                     q.setInteger("id", itemType);
+                    System.out.println(q.toString());
                     typeAttributes = (List<TypeAttribute>) q.list();
 
             } catch (RuntimeException e) {
@@ -425,6 +426,9 @@ public class LaduDAO {
                     appendLike("i.producer_code", form.getProducerCode(), query);
                     appendAnd("i.sale_price", form.getSalePrice(), query);
                     appendAnd("i.store_price", form.getStorePrice(), query);
+                    if (catalog != null) {
+                        appendAnd("item_type_fk", catalog, query);
+                    }
                     if (StringUtils.isNotBlank(form.getAttribute())) {
                             query.append(" and i.item in (SELECT item_fk FROM item_attribute WHERE item_fk=i.item and "
                                             + "(value_text like '%"
@@ -432,9 +436,7 @@ public class LaduDAO {
                                             + "%' or value_number = " + form.getAttribute() + "))");
                     }
                     if (form.getAttributes().size() > 0) {
-                            if (catalog != null) {
-                                    appendAnd("item_type_fk", catalog, query);
-                            }
+                            
                             for (Long key : form.getAttributes().keySet()) {
                                     AttributeModel currentAttribute = form.getAttributes().get(
                                                     key);
@@ -577,9 +579,9 @@ public class LaduDAO {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
             try {
-                    session.beginTransaction();
+//                    session.beginTransaction();
                     session.update(itemStore);
-                    session.getTransaction().commit();
+//                    session.getTransaction().commit();
             } catch (Exception e) {
             	System.out.println("5");
                     log.warn("DBUtil: updateItemStore()" + e.getMessage());
