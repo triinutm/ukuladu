@@ -84,11 +84,19 @@ public class ItemAction implements java.io.Serializable {
 		this.storeByStoreToFk = storeByStoreToFk;
 	}
 
-	public Item getItem() {
-		return this.itemFk;
+//	public Item getItem() {
+//		return this.itemFk;
+//	}
+//
+//	public void setItem(Item itemFk) {
+//		this.itemFk = itemFk;
+//	}
+
+	public Item getItemFk() {
+		return itemFk;
 	}
 
-	public void setItem(Item itemFk) {
+	public void setItemFk(Item itemFk) {
 		this.itemFk = itemFk;
 	}
 
