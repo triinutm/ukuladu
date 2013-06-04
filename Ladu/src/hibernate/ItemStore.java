@@ -1,5 +1,8 @@
 package hibernate;
 
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 // Generated May 16, 2013 2:51:38 PM by Hibernate Tools 3.4.0.CR1
 
 /**
@@ -25,7 +28,7 @@ public class ItemStore implements java.io.Serializable {
 		this.item = item;
 		this.itemCount = itemCount;
 	}
-
+	@OneToMany(fetch=FetchType.EAGER)
 	public long getItemStore() {
 		return this.itemStore;
 	}

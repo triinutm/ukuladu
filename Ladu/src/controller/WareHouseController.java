@@ -97,13 +97,15 @@ public class WareHouseController extends BaseController {
                         
                         ItemStore itemStoreFrom = wareHouseService.getItemStore(item, allStores, selectedStoreFromId);
                         
+                        System.out.println("LAOS ON TOOTEID VEEL : " + itemStoreFrom.getItemCount());
+                        
                         if(itemStoreFrom.getItemCount() == null){ //kontrollime, kas saadud lao kirjes on tootel kogus olemas.
                                 request.setAttribute("move_from_err", "Antud toodet selles laos pole!");
                         }
-                        else if(itemCountOnMove1 == (itemStoreFrom.getItemCount()) ){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
+                        else if(itemCountOnMove1 > (itemStoreFrom.getItemCount()) ){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
                                 request.setAttribute("move_from_err_counts", "Toodet pole laos piisavalt!");
                         }else{
-                                itemStoreFrom.setItemCount(itemStoreFrom.getItemCount()- (itemCountOnMove1)); //lahutame olemasolevast laost toodete koguse maha
+                                itemStoreFrom.setItemCount(itemStoreFrom.getItemCount() - (itemCountOnMove1)); //lahutame olemasolevast laost toodete koguse maha
                                         
                                         ladu.updateItemStore(itemStoreFrom);
                                         ItemAction itemActionRemove = wareHouseService.createWareHouseRemoveItemAction(user, paramtereMap, allStores, item);
@@ -113,7 +115,7 @@ public class WareHouseController extends BaseController {
                                         }
                                 
                                 }
-                        
+                        System.out.println("OlenUkus" + item.getName());
                         request.setAttribute("item", item);
                         request.setAttribute("allStores", allStores);
                         
@@ -135,7 +137,7 @@ public class WareHouseController extends BaseController {
                         if(itemStoreFrom.getItemCount() == null){ //kontrollime, kas saadud lao kirjes on tootel kogus olemas.
                                 request.setAttribute("move_from_err", "Antud toodet selles laos pole!");
                         }
-                        else if(itemCountOnMoveBigDecimal == (itemStoreFrom.getItemCount()) ){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
+                        else if(itemCountOnMoveBigDecimal > (itemStoreFrom.getItemCount()) ){ //kontrollime, kas laos on piisavalt tooteid mida liigutada
                                 request.setAttribute("move_from_err_counts", "Toodet pole laos piisavalt!");
                         }else{
                                 if(itemStoreTo != null){ //kui toode on olemas laos, siis lisame kogust.

@@ -12,5 +12,6 @@
   <property name="hibernate.current_session_context_class">thread</property>
   <mapping resource="hibernate/Item.hbm.xml"/>
   <mapping resource="hibernate/CustomerPriceList.hbm.xml"/>
+  <mapping class="hibernate.ItemPriceList" resource="hibernate/ItemPriceList.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>
