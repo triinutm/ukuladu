@@ -108,6 +108,7 @@ public class LaduDAO {
                     // session.getTransaction().commit();
             } catch (Exception e) {
                     session.getTransaction().rollback();
+                    System.out.println("16");
                     log.warn("Error: getAllItemTypes()");
             }
 
@@ -124,6 +125,7 @@ public class LaduDAO {
                     // session.getTransaction().commit();
             } catch (Exception e) {
                     session.getTransaction().rollback();
+                    System.out.println("15");
                     log.warn("Error: getItemTypeById()");
             }
             return itemType;
@@ -143,6 +145,7 @@ public class LaduDAO {
                     itemTypes = (List<ItemType>) q.list();
                     session.getTransaction().commit();
             } catch (Exception e) {
+            	System.out.println("14");
                     log.warn("Error: getItemTypeCatalogs()");
             }
 
@@ -164,6 +167,7 @@ public class LaduDAO {
             } catch (RuntimeException e) {
                     session.getTransaction().rollback();
                     System.out.println(e.getMessage());
+                    System.out.println("13");
                     log.warn("Error: getAllFirstLevelCatalogs");
             }
             return itemTypes;
@@ -188,6 +192,7 @@ public class LaduDAO {
                     }
 
             } catch (Exception e) {
+            	System.out.println("12");
                     e.printStackTrace();
             }
 
@@ -206,6 +211,7 @@ public class LaduDAO {
                     typeAttributes = (List<TypeAttribute>) q.list();
 
             } catch (RuntimeException e) {
+            	System.out.println("11");
                     e.printStackTrace();
             }
             return typeAttributes;
@@ -228,6 +234,7 @@ public class LaduDAO {
                     // session.getTransaction().commit();
             } catch (Exception e) {
                     session.getTransaction().rollback();
+                    System.out.println("10");
                     log.warn("Error: getItemTypeById()");
                     e.printStackTrace();
             }
@@ -251,6 +258,7 @@ public class LaduDAO {
                     session.getTransaction().commit();
             } catch (Exception e) {
                     session.getTransaction().rollback();
+                    System.out.println("9");
                     log.warn("Error: getAllWareHouses()");
                     e.printStackTrace();
             }
@@ -408,13 +416,13 @@ public class LaduDAO {
                     session.beginTransaction();
                     StringBuilder query = new StringBuilder(
                                     "select i.item, i.name, i.description, i.sale_price, "
-                                                    + " i.store_price, i.producer, i.producer_code, item_type_fk from item as i  where 1=1 ");
-                    appendLike("name", form.getName(), query);
-                    appendLike("description", form.getDescription(), query);
-                    appendLike("producer", form.getProducer(), query);
-                    appendLike("producer_code", form.getProducerCode(), query);
-                    appendAnd("sale_price", form.getSalePrice(), query);
-                    appendAnd("store_price", form.getStorePrice(), query);
+                                                    + " i.store_price, i.producer, i.producer_code, i.item_type_fk from item  i  where 1=1 ");
+                    appendLike("i.name", form.getName(), query);
+                    appendLike("i.description", form.getDescription(), query);
+                    appendLike("i.producer", form.getProducer(), query);
+                    appendLike("i.producer_code", form.getProducerCode(), query);
+                    appendAnd("i.sale_price", form.getSalePrice(), query);
+                    appendAnd("i.store_price", form.getStorePrice(), query);
                     if (StringUtils.isNotBlank(form.getAttribute())) {
                             query.append(" and i.item in (SELECT item_fk FROM item_attribute WHERE item_fk=i.item and "
                                             + "(value_text like '%"
@@ -431,7 +439,7 @@ public class LaduDAO {
                                     if (StringUtils.isNotBlank(currentAttribute
                                                     .getAttributeValue())) {
                                             query.append(" and i.item in (SELECT item_fk FROM item_attribute WHERE item_fk=i.item "
-                                                            + "and item_attribute_type_fk ="
+                                                            + "and i.item_attribute_type_fk ="
                                                             + key
                                                             + " and (value_text like '%"
                                                             + currentAttribute.getAttributeValue() + "%' ");
@@ -466,6 +474,7 @@ public class LaduDAO {
                     }
 
             } catch (RuntimeException e) {
+            	System.out.println("8");
                     e.printStackTrace();
             }
             return items;
@@ -473,7 +482,7 @@ public class LaduDAO {
 
     private void appendLike(String field, String value, StringBuilder query) {
             if (StringUtils.isNotBlank(value)) {
-                    query.append(" and " + field + " ilike '%" + value + "%'");
+                    query.append(" and " + field + "  like '%" + value + "%'");
             }
     }
 
@@ -515,6 +524,7 @@ public class LaduDAO {
                                     new Long(id));
                     session.getTransaction().commit();
             } catch (Exception e) {
+            	System.out.println("7");
                     session.getTransaction().rollback();
                     log.warn("Error: getItemActionType()");
                     e.printStackTrace();
@@ -537,6 +547,7 @@ public class LaduDAO {
                     session.save(itemAction);
                     session.getTransaction().commit();
             } catch (Exception e) {
+            	System.out.println("6");
                     log.warn("EventManager: insertItemAction()" + e.getMessage());
                     e.printStackTrace();
             }
@@ -568,6 +579,7 @@ public class LaduDAO {
                     session.update(itemStore);
                     session.getTransaction().commit();
             } catch (Exception e) {
+            	System.out.println("5");
                     log.warn("DBUtil: updateItemStore()" + e.getMessage());
                     e.printStackTrace();
             }
@@ -582,6 +594,7 @@ public class LaduDAO {
                     session.getTransaction().commit();
                     
             } catch (Exception e) {
+            	System.out.println("4");
                     log.warn("DBUtil: insertItemStore()" + e.getMessage());
                     e.printStackTrace();
             }
@@ -612,6 +625,7 @@ public class LaduDAO {
                     statement.close();
                     connection.close();
             } catch (SQLException e) {
+            	System.out.println("3");
                     log.warn("DBUtil: updateItemPriceInWareHouse()" + e.getMessage());
                     e.printStackTrace();
             }
@@ -642,6 +656,7 @@ public class LaduDAO {
                     }
                     session.getTransaction().commit();
             } catch (Exception e) {
+            	System.out.println("2");
                     log.warn("DBUtil: getItemStoreByItemAndStore()" + e.getMessage());
                     e.printStackTrace();
             }
@@ -668,6 +683,7 @@ public class LaduDAO {
                     itemStore = (List<ItemStore>) query.list();
                     session.getTransaction().commit();
             } catch (Exception e) {
+            	System.out.println("1");
                     log.warn("DBUtil: getItemStoresByItem()" + e.getMessage());
                     e.printStackTrace();
             }
