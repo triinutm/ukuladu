@@ -97,13 +97,15 @@ public class DBConnection {
          } catch (SQLException e) {
                  return null;
          }finally{
-                 try {
-                         connection.close();
-                	 System.out.println("hy");
-                 } catch (SQLException e) {
-                	 System.out.println("ühendus kinni pandud!");
-                         logger.error("Yhenduse sulgemine eba6nnestus!");
-                 }
+//                 try {
+//                         connection.close();
+//                	 System.out.println("hy");
+//                 } catch (SQLException e) {
+//                	 System.out.println("ühendus kinni pandud!");
+//                         logger.error("Yhenduse sulgemine eba6nnestus!");
+                
+//                 }
+         
          }  
  }    
 

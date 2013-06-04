@@ -579,9 +579,9 @@ public class LaduDAO {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
             try {
-//                    session.beginTransaction();
+                    session.beginTransaction();
                     session.update(itemStore);
-//                    session.getTransaction().commit();
+                    session.getTransaction().commit();
             } catch (Exception e) {
             	System.out.println("5");
                     log.warn("DBUtil: updateItemStore()" + e.getMessage());
@@ -659,6 +659,7 @@ public class LaduDAO {
                             itemStore = (ItemStore) itemStoreList.get(0);
                     }
                     session.getTransaction().commit();
+                    session.close();
             } catch (Exception e) {
             	System.out.println("2");
                     log.warn("DBUtil: getItemStoreByItemAndStore()" + e.getMessage());
