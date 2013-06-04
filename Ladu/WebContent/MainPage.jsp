@@ -14,7 +14,7 @@ out.println(treeView);
 if ( request.getAttribute("cat").toString() != null &&
 		!request.getAttribute("cat").toString().equalsIgnoreCase("-1") ) {
 %>
-<a href="<%=request.getContextPath() + "/search?catalog="+request.getParameter("cat")%>">Otsi</a>
+<a href="<%=request.getContextPath() + "/search?cat="+request.getParameter("cat")%>">Otsi</a>
 <%
 }
 if ( request.getAttribute("editCat") != null && 
