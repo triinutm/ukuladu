@@ -172,8 +172,8 @@ public class PriceListDAO {
 			statement.setDate(4, new java.sql.Date(priceList.getDateTo()
 					.getTime()));
 			statement.setString(5, priceList.getNote());
-			System.out.println("Päring tehtud");
-			statement.setLong(6, 1); // sisse loginud kasutaja
+			System.out.println("Pï¿½ring tehtud");
+			statement.setLong(6, 4); // sisse loginud kasutaja
 			statement.setLong(7, priceList.getPriceList());
 			statement.execute();
 			statement.close();
