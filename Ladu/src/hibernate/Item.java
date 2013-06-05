@@ -27,7 +27,7 @@ public class Item implements java.io.Serializable {
 	private String serialNo;
 	private Date created;
 	private Set itemPriceLists = new HashSet(0);
-	private Set itemAttributes = new HashSet(0);
+	private Set<ItemAttribute> itemAttributes = new HashSet<ItemAttribute>(0);
 	private Set items = new HashSet(0);
 	private Set itemStores = new HashSet(0);
 
