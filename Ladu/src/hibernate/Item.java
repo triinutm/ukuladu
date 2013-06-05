@@ -184,11 +184,11 @@ public class Item implements java.io.Serializable {
 		this.itemPriceLists = itemPriceLists;
 	}
 
-	public Set getItemAttributes() {
+	public Set<ItemAttribute> getItemAttributes() {
 		return this.itemAttributes;
 	}
 
-	public void setItemAttributes(Set itemAttributes) {
+	public void setItemAttributes(Set<ItemAttribute> itemAttributes) {
 		this.itemAttributes = itemAttributes;
 	}
 

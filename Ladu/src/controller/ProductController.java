@@ -52,7 +52,7 @@ public class ProductController extends BaseController {
                 Item item = laduDAO.getItemById(Integer.parseInt(request.getParameter("id")));
                 if (item != null) {
                     StringBuilder errors = new StringBuilder();
-                    if (item.getItemActions() != null && item.getItemActions().size() > 0) {
+                    if (item.getItems() != null && item.getItems().size() > 0) {
                         errors.append("Kustutamine ebaõnnestus, sest tootega on seotud laotoiminguid!<br>");
                     } else if (item.getItemPriceLists() != null && item.getItemPriceLists().size() > 0) {
                         errors.append("Kustutamine ebaõnnestus, sest tootega on seotud hinnakirjasid!<br>");

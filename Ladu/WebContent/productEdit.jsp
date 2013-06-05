@@ -12,7 +12,6 @@
 </head>
 <body>
 <%@ include file="logout.jsp" %>
-<h3>R11 LADU</h3>
 <%
 if(request.getAttribute("productModel") != null){
     ProductModel model = (ProductModel) request.getAttribute("productModel");
