@@ -11,7 +11,10 @@
 <title>Toote andemete muutmine</title>
 </head>
 <body>
-<%@ include file="logout.jsp" %>
+<form action="/Ladu_ukuolla/" method="post">
+<input type="submit" value="Logi välja! "/>
+
+</form>
 <%
 if(request.getAttribute("productModel") != null){
     ProductModel model = (ProductModel) request.getAttribute("productModel");

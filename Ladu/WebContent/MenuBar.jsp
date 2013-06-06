@@ -45,7 +45,7 @@
 			</td>
 			<td>
 				<%
-					out.println("<a href='http://uql.planet.ee/rp/klass.jpg'>Klassidiagramm </a>&nbsp;&nbsp;");
+					out.println("<a href='http://uql.planet.ee/rp/klass.png'>Klassidiagramm </a>&nbsp;&nbsp;");
 				%>
 			</td>
 			<td>

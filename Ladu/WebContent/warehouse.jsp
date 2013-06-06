@@ -21,7 +21,10 @@
 <%String moveCountError = (String)request.getAttribute("move_from_err_counts"); %>
 <%String paramActionNeeded = (String)request.getAttribute("parameter_needed"); %>
 <body>
-<%@ include file="logout.jsp" %>
+<form action="/Ladu_ukuolla/" method="post">
+<input type="submit" value="Logi välja! "/>
+
+</form>
 <h1>LAO TOIMINGUD</h1>
 <%if(item != null){ 
 	out.println("<strong>"+item.getName() + "- " + item.getDescription()+"</strong><br><br>");

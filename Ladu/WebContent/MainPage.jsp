@@ -11,15 +11,11 @@
 <%
 String treeView = (String)request.getAttribute("treeView"); 
 out.println(treeView);
-if ( request.getAttribute("editCat").toString() != null &&
-		!request.getAttribute("editCat").toString().equalsIgnoreCase("-1") ) {
-%>
-<a href="<%=request.getContextPath() + "/search?cat=" + request.getParameter("cat")%>">Otsi</a>
-<%
-}
+
 if ( request.getAttribute("editCat") != null && 
 		!request.getAttribute("editCat").toString().equalsIgnoreCase("-1") ) {
 %>
+<a href="<%=request.getContextPath() + "/search?cat=" + request.getParameter("cat")%>">Otsi</a>
 <a href="<%=request.getContextPath() + "/insert?cat=" + request.getParameter("cat")%>">Lisa uus</a>
 <%
 }
