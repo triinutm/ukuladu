@@ -11,7 +11,7 @@ ant-i abil serverisse imbi.ld.ttu.ee - muidu laheb selle nimega naide konflikti 
 sama-nimelise naitega mis on juba serveris imbi.ld.ttu.ee -->
 
 <project name="Ladu" default="all" basedir=".">
-      <property name="application_name" value="Ladu"/>
+      <property name="application_name" value="Ladu_ukuolla"/>
 	  <!-- Configure properties to access the Manager application -->
 	  <property name="url"      value="http://hektor4.ttu.ee:7500/manager/text"/>
 	  <property name="username" value="manager"/>

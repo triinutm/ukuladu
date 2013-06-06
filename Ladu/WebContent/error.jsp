@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ include file="MenuBar.jsp" %>
 <title>Vealeht</title>
 </head>
 <body>
-<h3>VEALEHT</h3>
-Süsteemi töös tekkis viga!
+<h3>Error</h3>
+Tekkis viga!
 Liigu <a href="${pageContext.request.contextPath}">esilehele</a>
 </body>
 </html>

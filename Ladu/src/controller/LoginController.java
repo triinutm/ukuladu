@@ -38,7 +38,7 @@ public class LoginController extends BaseController {
 			String hashedPassword=PWDecoder.hashPassword(password);
 			if(userAccount.getPassw().equals(hashedPassword)){
 				request.getSession().setAttribute("user", userAccount);
-				response.sendRedirect("/Ladu/");
+				response.sendRedirect("/Ladu_ukuolla");
 				System.out.println("I am sexmaniac");
 				return;
 			}else{

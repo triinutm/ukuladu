@@ -35,17 +35,17 @@
 			</td>
 			<td>
 				<%
-					out.println("<a href=''>Sisselogimise jadadiagramm </a>&nbsp;&nbsp;");
+					out.println("<a href='http://uql.planet.ee/rp/sisse.jpg'>Sisselogimise jadadiagramm </a>&nbsp;&nbsp;");
 				%>
 			</td>
 			<td>
 				<%
-					out.println("<a href=''>Ladude jadadiagramm </a>&nbsp;&nbsp;");
+					out.println("<a href='http://uql.planet.ee/rp/login.jpg'>Ladude jadadiagramm </a>&nbsp;&nbsp;");
 				%>
 			</td>
 			<td>
 				<%
-					out.println("<a href=''>Klassidiagramm </a>&nbsp;&nbsp;");
+					out.println("<a href='http://uql.planet.ee/rp/klass.jpg'>Klassidiagramm </a>&nbsp;&nbsp;");
 				%>
 			</td>
 			<td>
