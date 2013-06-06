@@ -391,18 +391,41 @@ public class LaduDAO {
 		Connection db  = null;	
 		try {
 			db = DBConnection.getConnection();
-			pstmt = db.prepareStatement("insert into item_attribute (ITEM_ATTRIBUTE_TYPE_FK, ITEM_FK, VALUE_TEXT, DATA_TYPE, ORDERBY) values (?, ?, ?, ?, ?)");
+			pstmt = db.prepareStatement("insert into item_attribute (ITEM_ATTRIBUTE_TYPE_FK, ITEM_FK, VALUE_TEXT, DATA_TYPE, ORDERBY, VALUE_NUMBER) values (?, ?, ?, ?, ?, ?)");
 			pstmt.setInt(1, (int) attribute.getItemAttributeType().getItemAttributeType());
+			System.out.println("1 " + attribute.getItemAttributeType().getItemAttributeType());
 			pstmt.setInt(2, (int) item.getItem());
-			pstmt.setString(3, attribute.getValueText());
-			pstmt.setInt(4, 1);
-			pstmt.setInt(5, (int) attribute.getItemAttributeType().getItemAttributeType());
-			int rs = pstmt.executeUpdate();
-			ResultSet rs2 = pstmt.getGeneratedKeys();
-			if(rs2.next()){
-				System.out.println("sain vastuse2: " + rs2.getInt(1));
-				attribute.setItemAttribute(rs2.getInt(1));
+			System.out.println("2 " + item.getItem());
+			if (attribute.getDataType().equals(2L)) {
+				int valnumber = (int) (long) attribute.getValueNumber();
+				pstmt.setInt(6, valnumber);
+				System.out.println("6 " + valnumber);
+				pstmt.setString(3, null);
+				System.out.println("3 " + attribute.getValueText());
+			} else
+			{
+				pstmt.setString(3, attribute.getValueText());
+				System.out.println("3 " + attribute.getValueText());
+				int valnumber = (int) (long) attribute.getValueNumber();
+				pstmt.setInt(6, valnumber);
+				System.out.println("6 " + valnumber);
 			}
+			int dataType = (int) (long)attribute.getDataType();
+			pstmt.setInt(4, dataType);
+			System.out.println("4 " + dataType);
+			pstmt.setInt(5, (int) attribute.getItemAttributeType().getItemAttributeType());
+			System.out.println("5 " + attribute.getItemAttributeType().getItemAttributeType());
+			int rs = pstmt.executeUpdate();
+			try {
+				ResultSet rs2 = pstmt.getGeneratedKeys();
+				if(rs2.next()){
+					System.out.println("sain vastuse2: " + rs2.getInt(1));
+					attribute.setItemAttribute(rs2.getInt(1));
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 		}
 		catch(Exception ex)
 		{ 

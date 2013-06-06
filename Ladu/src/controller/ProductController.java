@@ -117,6 +117,7 @@ public class ProductController extends BaseController {
                     if (attribute.getDataType().equals(1L)) {
                         attributeModel.setAttributeValue(attribute.getValueText());
                     } else if (attribute.getDataType().equals(2L)) {
+                    	System.out.println("valuenumber: " +attribute.getValueText());
                         attributeModel.setAttributeValue(attribute.getValueNumber().toString());
                     }
                     typeId = attribute.getItemAttributeType().getItemAttributeType();
