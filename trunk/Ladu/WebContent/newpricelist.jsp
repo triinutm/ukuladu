@@ -18,7 +18,10 @@
 </script>
 </head>
 <body>
-<%@ include file="logout.jsp" %>
+<form action="/Ladu_ukuolla/" method="post">
+<input type="submit" value="Logi välja! "/>
+
+</form>
 <form action="pricelist?action=new" method="POST">
 		<table border="1">
 			<tr>

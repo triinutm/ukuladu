@@ -13,7 +13,10 @@
 <title>Hinnakirjad</title>
 </head>
 <body>
-	<%@ include file="logout.jsp"%>
+	<form action="/Ladu_ukuolla/" method="post">
+<input type="submit" value="Logi välja! "/>
+
+</form>
 	
 	<%
 		String id = "";
@@ -40,7 +43,7 @@
 						"</td><td><a HREF='pricelist?action=delete&uid="+ id
 						+ "'TARGET='_self'><strong>kustuta</strong></a></td></tr>");
 			}
-			out.println("</table><input type=button onclick=\"window.location.href='/Ladu/pricelist?id=new'\"value='Loo uus'>");
+			out.println("</table><input type=button onclick=\"window.location.href='/Ladu_ukuolla/pricelist?id=new'\"value='Loo uus'>");
 		} catch (Exception ex) {
 			out.println("Mingi viga: " + ex.getMessage());
 		}		
