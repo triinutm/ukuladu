@@ -391,24 +391,23 @@ public class LaduDAO {
 		Connection db  = null;	
 		try {
 			db = DBConnection.getConnection();
-			pstmt = db.prepareStatement("insert into item_attribute (ITEM_ATTRIBUTE_TYPE_FK, ITEM_FK, VALUE_TEXT, DATA_TYPE, ORDERBY, VALUE_NUMBER) values (?, ?, ?, ?, ?, ?)");
+			if (attribute.getDataType().equals(2L)) {
+				pstmt = db.prepareStatement("insert into item_attribute (ITEM_ATTRIBUTE_TYPE_FK, ITEM_FK, VALUE_NUMBER, DATA_TYPE, ORDERBY) values (?, ?, ?, ?, ?)");
+			} else {
+				pstmt = db.prepareStatement("insert into item_attribute (ITEM_ATTRIBUTE_TYPE_FK, ITEM_FK, VALUE_TEXT, DATA_TYPE, ORDERBY) values (?, ?, ?, ?, ?)");
+			}
 			pstmt.setInt(1, (int) attribute.getItemAttributeType().getItemAttributeType());
 			System.out.println("1 " + attribute.getItemAttributeType().getItemAttributeType());
 			pstmt.setInt(2, (int) item.getItem());
 			System.out.println("2 " + item.getItem());
 			if (attribute.getDataType().equals(2L)) {
 				int valnumber = (int) (long) attribute.getValueNumber();
-				pstmt.setInt(6, valnumber);
-				System.out.println("6 " + valnumber);
-				pstmt.setString(3, null);
-				System.out.println("3 " + attribute.getValueText());
+				pstmt.setInt(3, valnumber);
+				System.out.println("3 " + valnumber);
 			} else
 			{
 				pstmt.setString(3, attribute.getValueText());
 				System.out.println("3 " + attribute.getValueText());
-				int valnumber = (int) (long) attribute.getValueNumber();
-				pstmt.setInt(6, valnumber);
-				System.out.println("6 " + valnumber);
 			}
 			int dataType = (int) (long)attribute.getDataType();
 			pstmt.setInt(4, dataType);
