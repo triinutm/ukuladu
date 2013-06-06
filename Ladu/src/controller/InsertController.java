@@ -44,11 +44,16 @@ public class InsertController extends BaseController implements Servlet {
         RequestDispatcher view = request.getRequestDispatcher("/insert.jsp");
         Map<String, String[]> parameterMap = request.getParameterMap();
         ProductModel m = FormUtil.getProductFromParameterMap(parameterMap);
+    
         ProductValidator validator = new ProductValidator();
         boolean isValid = validator.validateProductModel(m);
+        
+        System.out.println(m.getAttributes());
         if(isValid){
             LaduDAO laduDAO = new LaduDAO();
             Item item = laduDAO.saveItem(m);
+            System.out.println("Salvestasin: " + item.getName());
+            System.out.println("Salvestasin id: "+ item.getItem());
             if(item != null){
                 response.sendRedirect(request.getContextPath()+"/product?id="+item.getItem());
                 return;

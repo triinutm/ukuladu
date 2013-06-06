@@ -66,15 +66,22 @@ public class ProductController extends BaseController {
                     request.setAttribute("error", errors.toString());
                 }
             } else {
+            	System.out.println("else");
                 ProductValidator validator = new ProductValidator();
                 boolean isValid = validator.validateProductModel(m);
+                System.out.println("validated");
                 if (isValid) {
+//                if (true) {
+                	System.out.println("isvalid");
                     Item item = laduDAO.updateItem(m, new Long(parameterMap.get("id")[0]));
+                    System.out.println("updated");
                     if (item != null) {
+                    	System.out.println("redirect");
                         response.sendRedirect(request.getContextPath() + "/product?id=" + request.getParameter("id"));
                         return;
                     }
                 }
+                System.out.println("else end");
             }
             request.setAttribute("productModel", m);
         }
@@ -97,10 +104,13 @@ public class ProductController extends BaseController {
                 Map<Long, TypeAttribute> typeAttributeIdMap = new HashMap<Long, TypeAttribute>();
                 for (TypeAttribute t : typeAttributes) {
                     typeAttributeIdMap.put(t.getItemAttributeType().getItemAttributeType(), t);
+                    System.out.println("lisan: " + t.getItemAttributeType().getItemAttributeType());
+                    System.out.println("ja lisan: " + t.getTypeAttribute());
                 }
                 Long typeId;
+                System.out.println("Suurus peale lisamist! " + typeAttributeIdMap.size());
                 // Käime läbi kõik toote attribuudid, mis baasis olemas on
-                for (ItemAttribute attribute : item.getItemAttributes()) { 
+                for (ItemAttribute attribute : item.getItemAttributes()) {
                     AttributeModel attributeModel = new AttributeModel();
                     attributeModel.setAttributeId(attribute.getItemAttribute());
                     attributeModel.setAttributeName(attribute.getItemAttributeType().getTypeName());
@@ -109,16 +119,20 @@ public class ProductController extends BaseController {
                     } else if (attribute.getDataType().equals(2L)) {
                         attributeModel.setAttributeValue(attribute.getValueNumber().toString());
                     }
-                    typeId = typeAttributeIdMap.get(attribute.getItemAttributeType().getItemAttributeType()).getTypeAttribute();
+                    typeId = attribute.getItemAttributeType().getItemAttributeType();
+//                    typeId = typeAttributeIdMap.get(attribute.getItemAttributeType().getItemAttributeType()).getTypeAttribute();
                     typeAttributeIdMap.remove(attribute.getItemAttributeType().getItemAttributeType());
                     model.getAttributes().put(typeId, attributeModel);
+                    System.out.println("hangunx1");
                 }
+                System.out.println("Suurus peale olemasolevate eemaldamist" + typeAttributeIdMap.size());
                 // kui baasi polnud kõiki attribuute kohe lisatud, siis lisame
                 // siin ka ülejäänud toote attribuudid
                 for (TypeAttribute t : typeAttributeIdMap.values()) {
                     AttributeModel attibute = new AttributeModel();
                     attibute.setAttributeName(t.getItemAttributeType().getTypeName());
                     model.getAttributes().put(t.getTypeAttribute(), attibute);
+                    System.out.println("hangun 2");
                 }
                 ItemType type = item.getItemType();
                 model.setType(type.getTypeName());

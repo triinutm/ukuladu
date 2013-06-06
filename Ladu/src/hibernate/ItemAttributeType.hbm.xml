@@ -17,13 +17,13 @@
         <property name="dataType" type="java.lang.Long">
             <column name="DATA_TYPE" precision="10" scale="0" />
         </property>
-        <set name="typeAttributes" table="TYPE_ATTRIBUTE" inverse="true" lazy="true" fetch="select">
+        <set name="typeAttributes" table="TYPE_ATTRIBUTE" inverse="true" lazy="false">
             <key>
                 <column name="ITEM_ATTRIBUTE_TYPE_FK" precision="10" scale="0" />
             </key>
             <one-to-many class="hibernate.TypeAttribute" />
         </set>
-        <set name="itemAttributes" table="ITEM_ATTRIBUTE" inverse="true" lazy="true" fetch="select">
+        <set name="itemAttributes" table="ITEM_ATTRIBUTE" inverse="true" lazy="false">
             <key>
                 <column name="ITEM_ATTRIBUTE_TYPE_FK" precision="10" scale="0" />
             </key>
