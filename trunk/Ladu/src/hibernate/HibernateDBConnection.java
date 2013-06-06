@@ -84,5 +84,30 @@ public class HibernateDBConnection {
 		}
 		return emp;
 	}
+	
+	public long getItemId(Item item){
+		long result = 0;
+		Session session = null;
+		Item item2 = null;
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Query q = session.createQuery("from Item as i where description = :desc and name = :name and salePrice = :price");
+			q.setParameter("desc", item.getDescription());
+			q.setParameter("name", item.getName());
+			q.setParameter("price", item.getSalePrice());
+			item2 = (Item) q.list().get(0);
+			result = item2.getItem();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+			
+		}
+		return result;
+	}
 
 }
