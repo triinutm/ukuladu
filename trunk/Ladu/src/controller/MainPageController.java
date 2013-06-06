@@ -56,7 +56,7 @@ public class MainPageController extends HttpServlet {
 			request.setAttribute("treeView", treeViewHTML);
 			view.forward(request, response);
 		} else {
-			response.sendRedirect("/Ladu/login.jsp");
+			response.sendRedirect("/Ladu_ukuolla/login.jsp");
 		}
 	}
 

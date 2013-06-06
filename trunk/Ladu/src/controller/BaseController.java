@@ -21,7 +21,7 @@ public abstract class BaseController extends HttpServlet {
 		try{
 			doOnGet(request, response);
 		}catch (Exception e){
-			response.sendRedirect("/Ladu/viga");
+			response.sendRedirect("/Ladu_ukuolla/viga");
 			
 			e.printStackTrace();
 		}
@@ -35,7 +35,7 @@ public abstract class BaseController extends HttpServlet {
 		try{
 			doOnPost(req,resp);
 		}catch (Exception e){
-			resp.sendRedirect("/Ladu/viga");
+			resp.sendRedirect("/Ladu_ukuolla/viga");
 			e.printStackTrace();
 		}
 

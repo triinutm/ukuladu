@@ -12,6 +12,7 @@
 </head>
 <body>
 <%@ include file="logout.jsp" %>
+<%@ include file="MenuBar.jsp" %>
 <form action="" method="POST">
 <table>
 <%

@@ -10,7 +10,6 @@
 	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css" />
 <script>
 	$(function() {
 		$("#date_from").datepicker();
@@ -20,6 +19,7 @@
 </head>
 <body>
 <%@ include file="logout.jsp" %>
+<%@ include file="MenuBar.jsp" %>
 <form action="pricelist?action=new" method="POST">
 		<table border="1">
 			<tr>
