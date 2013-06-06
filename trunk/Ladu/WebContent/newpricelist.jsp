@@ -19,7 +19,6 @@
 </head>
 <body>
 <%@ include file="logout.jsp" %>
-<%@ include file="MenuBar.jsp" %>
 <form action="pricelist?action=new" method="POST">
 		<table border="1">
 			<tr>
