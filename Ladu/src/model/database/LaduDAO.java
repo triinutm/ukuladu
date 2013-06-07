@@ -746,8 +746,14 @@ public class LaduDAO {
 			DBConnection dbConnection = new DBConnection();
 			Connection connection = dbConnection.getConnection();
 			Statement statement = connection.createStatement();
-			statement.execute("select f_uuenda_lao_hinda (" + itemId + ", "
-					+ newItemCount + ", " + newItemPrice + ");");
+			System.out.println("itemID " + itemId);
+			System.out.println("newcount" + newItemCount);
+			System.out.println("newPrice" + newItemPrice);
+			String callable = "call f_uuenda_lao_hinda(" + itemId + ", "
+					+ newItemCount + ", " + newItemPrice  + ")";
+			System.out.println(callable);
+			statement.execute(callable);/*newItemPrice*/
+			System.out.println("peale");
 			statement.close();
 			connection.close();
 		} catch (SQLException e) {
