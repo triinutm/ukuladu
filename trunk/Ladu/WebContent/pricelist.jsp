@@ -26,6 +26,7 @@
 </script>
 </head>
 <body>
+<%@ include file="MenuBar.jsp" %>
 <form action="/Ladu_ukuolla/" method="post">
 <input type="submit" value="Logi välja! "/>
 </form>

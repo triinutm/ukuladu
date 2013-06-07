@@ -1,5 +1,6 @@
 package labidas;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -46,7 +47,7 @@ public class Test {
 
 //		HibernateDBConnection hDBC = new HibernateDBConnection();
 		
-		PriceListDAO dao = new PriceListDAO();
+//		PriceListDAO dao = new PriceListDAO();
 		
 //		List<CustomerM> lits = new ArrayList<CustomerM>();
 //		lits=dao.findCustomersById(1);
@@ -55,7 +56,7 @@ public class Test {
 //			System.out.println(customerM.getName());
 //		}
 		
-		System.out.println(dao.findItemsById(1));
+//		System.out.println(dao.findItemsById(1));
 		
 //		System.out.println(dao.findAll());
 		
@@ -92,6 +93,12 @@ public class Test {
 //			}
 //
 //		}
+		
+		LaduDAO laduDAO = new LaduDAO();
+        Item itemBefore = laduDAO.getItemById(1);
+        BigDecimal itemStorePriceBefore = itemBefore.getStorePrice();
+        System.out.println("siiani");
+        laduDAO.updateItemPriceInWareHouse(itemBefore, 30, 90);
 	}
 
 }

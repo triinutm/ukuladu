@@ -21,6 +21,7 @@
 <%String moveCountError = (String)request.getAttribute("move_from_err_counts"); %>
 <%String paramActionNeeded = (String)request.getAttribute("parameter_needed"); %>
 <body>
+<%@ include file="MenuBar.jsp" %>
 <form action="/Ladu_ukuolla/" method="post">
 <input type="submit" value="Logi välja! "/>
 
